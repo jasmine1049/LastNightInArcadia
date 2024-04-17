@@ -70,3 +70,49 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+
+# Adding some new things here for the .gitignore
+
+###
+# Unity folders and files
+###
+[Aa]ssets/AssetStoreTools*
+[Bb]uild/
+[Ll]ibrary/
+[Ll]ocal[Cc]ache/
+[Oo]bj/
+[Tt]emp/
+[Uu]nityGenerated/
+# file on crash reports
+sysinfo.txt
+# Unity3D generated meta files
+*.pidb.meta
+
+###
+# VS/MD solution and project files
+###
+[Ee]xportedObj/
+*.booproj
+*.csproj
+*.sln
+*.suo
+*.svd
+*.unityproj
+*.user
+*.userprefs
+*.pidb
+.DS_Store
+
+###
+# OS generated
+###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
