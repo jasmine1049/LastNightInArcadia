@@ -2388,74 +2388,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3317494428230700699, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -615.9364
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317494428230700699, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 3317494428230700699, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 53
-      objectReference: {fileID: 0}
     - target: {fileID: 4581037517836166995, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
       propertyPath: m_Name
       value: Progress Day UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581037517836166995, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933871772332871614, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_fontSize
-      value: 26.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933871772332871614, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 26.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4933871772332871614, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070942673444126074, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070942673444126074, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070942673444126074, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6858233250393153939, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_fontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6858233250393153939, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6858233250393153939, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7083653587291091856, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -84
-      objectReference: {fileID: 0}
-    - target: {fileID: 7083653587291091856, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 7994987254270505534, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
       propertyPath: _nextUIPage
       value: 
       objectReference: {fileID: 980591496}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 070b402ca599a5f4e940f552af9ab367, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -360,6 +360,26 @@ PrefabInstance:
       propertyPath: _nextUIPage
       value: 
       objectReference: {fileID: 741504136}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 070b402ca599a5f4e940f552af9ab367, type: 3}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Color.b
+      value: 0.33134568
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Color.g
+      value: 0.33134568
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674452980070251728, guid: 8214a23ba29e3ac4c8bf38441fd5a746, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9622642
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -422,7 +442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You're mom
+  m_text: Get murdered bozo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -615,7 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

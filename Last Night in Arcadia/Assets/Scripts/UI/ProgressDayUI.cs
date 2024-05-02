@@ -8,10 +8,6 @@ using UnityEngine.UI;
 
 public class ProgressDayUI : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Background Art")]
-    [SerializeField] private Image _backgroundImage;
-    [SerializeField] private Sprite _backgroundArt;
-
     [Header("Text Boxes")]
     [SerializeField] private TextMeshProUGUI _dateTextBox;
     [SerializeField] private TextMeshProUGUI _dayOfTheWeekTextBox;
@@ -31,8 +27,6 @@ public class ProgressDayUI : MonoBehaviour, IPointerClickHandler
     /// </summary>
     void Start()
     {
-        _backgroundImage.sprite = _backgroundArt;
-
         _gameManager = GameManager.Instance;
         _date = _gameManager.DayTracker.Date;
         _timeOfDay = _gameManager.DayTracker.TimeOfDay;
