@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sailor
   m_EditorClassIdentifier: 
   _name: Sailor
-  portrait: {fileID: 21300000, guid: ed823f5fe55f19e46a8aac22cd862e91, type: 3}
+  _portrait: {fileID: 21300000, guid: ed823f5fe55f19e46a8aac22cd862e91, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DayTracker : MonoBehaviour
 {
-    public enum TimesOfDay
+    private enum TimesOfDay
     {
         Evening,
         Night,
@@ -13,22 +13,20 @@ public class DayTracker : MonoBehaviour
     }
 
 
-    [Header("Date")]
+    [Header("Starting Date")]
     [SerializeField] private int _startingDay;
     [SerializeField] private int _startingMonth;
     [SerializeField] private int _startingYear;
+
     private DateTime _currentDate;
     private TimesOfDay _currentTimeOfDay;
 
 
-    public DateTime Date { get { return _currentDate; } set { } }
-    public TimesOfDay TimeOfDay { get { return _currentTimeOfDay; } set { } }
-
-
     /// <summary>
-    /// Initializes the date and time of day.
+    /// Initializes the date and time of day. Done in Awake to ensure data from this class is
+    /// always set if another class calls data from it in its Start.
     /// </summary>
-    void Start()
+    void Awake()
     {
         _currentDate = new DateTime(_startingYear, _startingMonth, _startingDay);
         _currentTimeOfDay = TimesOfDay.Evening;
@@ -46,6 +44,37 @@ public class DayTracker : MonoBehaviour
         {
             AdvanceOneDay();
         }
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public string GetDayOfTheWeek()
+    {
+        return _currentDate.DayOfWeek.ToString();
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public string GetTimeOfDay()
+    {
+        return _currentTimeOfDay.ToString();
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public (int Day, string MonthName, int Year) GetDate()
+    {
+
+        return (_currentDate.Day, _currentDate.ToString("MMMM"), _currentDate.Year);
     }
 
 

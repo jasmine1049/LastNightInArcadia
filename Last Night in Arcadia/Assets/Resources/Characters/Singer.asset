@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Singer
   m_EditorClassIdentifier: 
   _name: Singer
-  portrait: {fileID: 21300000, guid: b417df56f2ed1184596422528b64deca, type: 3}
+  _portrait: {fileID: 21300000, guid: b417df56f2ed1184596422528b64deca, type: 3}

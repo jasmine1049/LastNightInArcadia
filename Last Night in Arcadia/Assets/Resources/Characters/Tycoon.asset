@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Tycoon
   m_EditorClassIdentifier: 
   _name: Tycoon
-  portrait: {fileID: 21300000, guid: a3c6a2e48ec65cb46ba78b69b26cdcfb, type: 3}
+  _portrait: {fileID: 21300000, guid: a3c6a2e48ec65cb46ba78b69b26cdcfb, type: 3}

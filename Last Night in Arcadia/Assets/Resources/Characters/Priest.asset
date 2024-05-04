@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Priest
   m_EditorClassIdentifier: 
   _name: Priest
-  portrait: {fileID: 21300000, guid: eebc76f84dc20d14297a653e95e1b4a5, type: 3}
+  _portrait: {fileID: 21300000, guid: eebc76f84dc20d14297a653e95e1b4a5, type: 3}

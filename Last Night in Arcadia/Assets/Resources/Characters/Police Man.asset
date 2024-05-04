@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Police Man
   m_EditorClassIdentifier: 
   _name: Police Man
-  portrait: {fileID: 21300000, guid: 054925612d5de1e43b8b0981cd31a180, type: 3}
+  _portrait: {fileID: 21300000, guid: 054925612d5de1e43b8b0981cd31a180, type: 3}

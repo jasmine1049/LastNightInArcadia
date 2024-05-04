@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ally Role 8
   m_EditorClassIdentifier: 
   _name: Ally Role 8
-  _description: 
+  _description: TBD
   _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
   _type: 1
   _index: 10

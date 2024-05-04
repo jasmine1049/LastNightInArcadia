@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Gambler
   m_EditorClassIdentifier: 
   _name: Gambler
-  portrait: {fileID: 21300000, guid: 3ec42e641a9f02b4c970a03ee1bd8474, type: 3}
+  _portrait: {fileID: 21300000, guid: 3ec42e641a9f02b4c970a03ee1bd8474, type: 3}

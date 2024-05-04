@@ -8,20 +8,11 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } private set { } }
 
-    private List<SOCharacter> _SOCharacters;
-    private List<SORole> _SORoles;
-    private List<Character> _characters;
-    public List<Character> Characters { get { return _characters; } private set { } }
-    public List<SORole> SORoles { get { return _SORoles; } private set { } }
-
-    private DayTracker _dayTracker;
-    private MoraleSystem _moraleSystem;
-    public DayTracker DayTracker { get { return _dayTracker; } private set { } }
-    public MoraleSystem MoraleSystem { get { return _moraleSystem; } private set { } }
+    private Character[] _characters;
 
 
     /// <summary>
-    /// Implement the game manager as a singleton.
+    /// Implement the game manager as a singleton. Initialize characters list.
     /// </summary>
     void Awake()
     {
@@ -35,58 +26,50 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        _SOCharacters = new List<SOCharacter>(Resources.LoadAll<SOCharacter>("Characters"));
-        _SORoles = new List<SORole>(Resources.LoadAll<SORole>("Roles"));
+        // Put these 3 in an "initialize" function so it's easier to run multiple games, simply call these
+        // three again in the afermentioned function.
+        // Oh and probably a variable in the fuction that checks for "new game"
         CreateCharactersList();
         ShuffleCharacterList();
         AssignRoles();
-
-        _dayTracker = this.gameObject.GetComponent<DayTracker>();
-        _moraleSystem = this.gameObject.GetComponent<MoraleSystem>();
     }
-
-    /*
-    /// <summary>
-    /// Load all roles and character scriptable objects then randomly assign roles.
-    /// Then initialize variables.
-    /// </summary>
-    void Start()
-    {
-        _SOCharacters = new List<SOCharacter>(Resources.LoadAll<SOCharacter>("Characters"));
-        _SORoles = new List<SORole>(Resources.LoadAll<SORole>("Roles"));
-        CreateCharactersList();
-        ShuffleCharacterList();
-        AssignRoles();
-
-        _dayTracker = this.gameObject.GetComponent<DayTracker>();
-        _moraleSystem = this.gameObject.GetComponent<MoraleSystem>();
-    }
-    */
 
 
     /// <summary>
-    /// Returns a list of scriptable object, by default all will be returned but a type can be
-    /// specified instead.
+    /// Returns the character from the character's array at the given index.
     /// </summary>
-    /// <param name="type"></param>
-    /// <returns>Returns a list of scriptable object roles.</returns>
-    public List<SORole> GetSORoles(SORole.RoleType type = SORole.RoleType.NONE)
+    /// <param name="index">Index to the character's array.</param>
+    /// <returns>Character from character's array.</returns>
+    public Character GetCharacter(int index)
     {
-        if (type == SORole.RoleType.NONE)
-        {
-            return _SORoles;
-        }
+        return _characters[index];
+    }
 
-        List<SORole> roles = new List<SORole>();
-        foreach (SORole role in _SORoles)
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="condition"></param>
+    /// <returns></returns>
+    public Character[] GetCharacters(Func<Character, bool> condition)
+    {
+        List<Character> characters = new List<Character>();
+        foreach (Character character in _characters)
         {
-            if (role.Type == type)
+            if (condition(character))
             {
-                roles.Add(role);
+                characters.Add(character);
             }
         }
 
-        return roles;
+        return characters.ToArray();
+    }
+
+
+    public void SetTarget(int targeter, int target)
+    {
+        _characters[targeter].SetTarget(_characters[target]);
+        _characters[target].SetTargeter(_characters[targeter]);
     }
 
 
@@ -95,11 +78,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void CreateCharactersList()
     {
-        _characters = new List<Character>();
-        for (int i = 0; i < _SOCharacters.Count; i++)
+        SOCharacter[] SOCharacters = Resources.LoadAll<SOCharacter>("Characters");
+
+        _characters = new Character[SOCharacters.Length];
+        for (int i = 0; i < SOCharacters.Length; i++)
         {
-            Character character = new Character(_SOCharacters[i]);
-            _characters.Add(character);
+            _characters[i] = new Character(SOCharacters[i]);
         }
     }
 
@@ -109,7 +93,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void ShuffleCharacterList()
     {
-        for (int i = _characters.Count - 1; i > 0; i--)
+        for (int i = _characters.Length - 1; i > 0; i--)
         {
             int j = UnityEngine.Random.Range(0, i + 1);
             Character temp = _characters[i];
@@ -120,15 +104,17 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// Assigns a role to each character. Assumes each role scriptable object was given a unique
-    /// role index. Roles are assigned in order of execution.
+    /// Assigns a role to each character. Assumes each role was given a unique role index and is of
+    /// equal length to the number of characters.
     /// </summary>
     private void AssignRoles()
     {
-        for (int i = 0; i < _SORoles.Count; i++)
+        SORole[] SORoles = Resources.LoadAll<SORole>("Roles");
+
+        for (int i = 0; i < SORoles.Length; i++)
         {
-            int index = _SORoles[i].Index;
-            _characters[index].AssignRole(_SORoles[index]);
+            SORole role = SORoles[i];
+            _characters[role.Index].AssignRole(role);
         }
     }
 }

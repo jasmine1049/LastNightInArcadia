@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Doctor
   m_EditorClassIdentifier: 
   _name: Doctor
-  portrait: {fileID: 21300000, guid: 7127a1fd199ec0840a3da07cd1b201bf, type: 3}
+  _portrait: {fileID: 21300000, guid: 7127a1fd199ec0840a3da07cd1b201bf, type: 3}

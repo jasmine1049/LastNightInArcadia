@@ -6,10 +6,10 @@ using UnityEngine;
 public class SOCharacter : ScriptableObject
 {
     [SerializeField] private string _name;
-    // Replace this with variables needed for Live2D
-    [SerializeField] private Sprite portrait;
+    // Replace this with variables needed for Live2D to work
+    [SerializeField] private Sprite _portrait;
 
 
     public string Name { get { return _name; } private set { } }
-    public Sprite Portrait { get { return portrait; } private set { } }
+    public Sprite Portrait { get { return _portrait; } private set { } }
 }
