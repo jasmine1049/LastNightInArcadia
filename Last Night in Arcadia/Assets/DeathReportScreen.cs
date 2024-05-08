@@ -24,7 +24,6 @@ public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData _)
     {
         _numberDeathsToReport--;
-        print(_numberDeathsToReport);
 
         if (_numberDeathsToReport <= 0)
         {

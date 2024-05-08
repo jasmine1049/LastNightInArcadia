@@ -17,7 +17,7 @@ public class Madman : Character
     {
         if (_moraleBreakpoint <= GameManager.Instance.GetComponent<MoraleManager>().CurrentMorale)
         {
-            // kill random that is not overseer
+            //
         }
     }
 }
