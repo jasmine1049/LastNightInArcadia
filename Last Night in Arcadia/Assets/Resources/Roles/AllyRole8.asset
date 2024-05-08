@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdd7066b24be3b64d8abe7f2f58646f4, type: 3}
-  m_Name: DRONE (TBN)
+  m_Name: AllyRole8
   m_EditorClassIdentifier: 
-  _name: DRONE (TBN)
-  _description: Randomly attacks a non-hostile suspect each night.
+  _description: TBD
   _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
-  _type: 2
-  _index: 13
-  _moralLossOnDeath: 0
-  _moralLossOnExecution: 0
+  _index: 10
+  _alignment: 1
+  _moralLossOnDeath: 5
+  _moralLossOnExecution: 20

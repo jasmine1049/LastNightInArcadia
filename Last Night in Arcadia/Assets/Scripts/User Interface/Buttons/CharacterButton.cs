@@ -36,6 +36,9 @@ public class CharacterButton : MyButton
     }
 
 
+    /// <summary>
+    /// Updates the CharacterButtons UI.
+    /// </summary>
     public override void UpdateUI()
     {
         Character character = GameManager.Instance.GetCharacter(base.Index);

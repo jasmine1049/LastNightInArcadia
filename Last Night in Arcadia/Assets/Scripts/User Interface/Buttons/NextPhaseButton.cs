@@ -31,5 +31,6 @@ public class NextPhaseButton : MonoBehaviour
     private void LoadNextScene()
     {
         GameManager.Instance.GetComponent<SceneController>().LoadNextScene();
+        GameManager.Instance.TakeActions();
     }
 }

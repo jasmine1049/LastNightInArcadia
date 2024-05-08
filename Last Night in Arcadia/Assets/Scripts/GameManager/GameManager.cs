@@ -1,18 +1,23 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
-    public static GameManager Instance { get { return _instance; } private set { } }
+    public const int TotalNumberOfCharacters = 16;
 
+    private static GameManager _instance;
     private Character[] _characters;
 
 
+    public static GameManager Instance { get { return _instance; } private set { } }
+    public Character[] Characters { get { return _characters; } private set { } }
+
+
     /// <summary>
-    /// Implement the game manager as a singleton. Initialize characters list.
+    /// Implement the game manager as a singleton and starts a new game.
     /// </summary>
     void Awake()
     {
@@ -26,20 +31,36 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        // Put these 3 in an "initialize" function so it's easier to run multiple games, simply call these
-        // three again in the afermentioned function.
-        // Oh and probably a variable in the fuction that checks for "new game"
-        CreateCharactersList();
-        ShuffleCharacterList();
-        AssignRoles();
+        StartNewGame();
     }
 
 
     /// <summary>
-    /// Returns the character from the character's array at the given index.
+    /// Creates, randomizes, and initializes a new character's array.
+    /// </summary>
+    public void StartNewGame()
+    {
+        _characters = new Character[TotalNumberOfCharacters];
+        SOPerson[] people = LoadResourcesFolder<SOPerson>("People");
+        SORole[] roles = LoadResourcesFolder<SORole>("Roles");
+
+        foreach (var character in RandomZip(people, roles))
+        {
+            Type type = Type.GetType(character.role.Name);
+            Debug.Assert(type != null,
+                String.Format("{0} is not a valid type. Check spelling of scriptable object and associated script.", character.role.Name));
+
+            _characters[character.index] = (Character)Activator.CreateInstance(type, character.person, character.role, character.index);
+        }
+    }
+
+
+    /// <summary>
+    /// Returns the character from the character's array at the given index. Assumes the given
+    /// index is within range of the character's array.
     /// </summary>
     /// <param name="index">Index to the character's array.</param>
-    /// <returns>Character from character's array.</returns>
+    /// <returns>Character associated with the given index.</returns>
     public Character GetCharacter(int index)
     {
         return _characters[index];
@@ -47,13 +68,14 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// Returns an array of characters that match the given condition.
     /// </summary>
-    /// <param name="condition"></param>
-    /// <returns></returns>
+    /// <param name="condition">A function that takes in a Character as a parameter and returns a bool.</param>
+    /// <returns>Array of characters that match the given condition.</returns>
     public Character[] GetCharacters(Func<Character, bool> condition)
     {
         List<Character> characters = new List<Character>();
+
         foreach (Character character in _characters)
         {
             if (condition(character))
@@ -66,6 +88,26 @@ public class GameManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Calls each character's TakeAction method.
+    /// </summary>
+    public void TakeActions()
+    {
+        foreach (Character character in _characters)
+        {
+            if (character.IsAlive)
+            {
+                character.TakeAction();
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Sets the targeter's target and vice versa.
+    /// </summary>
+    /// <param name="targeter">The character whose going to act upon the target.</param>
+    /// <param name="target">Character who will be acted upon by the targeter.</param>
     public void SetTarget(int targeter, int target)
     {
         _characters[targeter].SetTarget(_characters[target]);
@@ -74,47 +116,57 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// Creates the characters list and initializes each character from it's scriptable object.
+    /// Returns an array of all the assets from a specified folder in the Resource folder.
     /// </summary>
-    private void CreateCharactersList()
+    /// <typeparam name="T">Asset type.</typeparam>
+    /// <param name="path">Pathname to the target folder, is relative to any Resource folder.</param>
+    /// <returns>Array of asset types from the target folder.</returns>
+    private T[] LoadResourcesFolder<T>(string path)
     {
-        SOCharacter[] SOCharacters = Resources.LoadAll<SOCharacter>("Characters");
+        T[] assets = Resources.LoadAll(path, typeof(T)).Cast<T>().ToArray();
 
-        _characters = new Character[SOCharacters.Length];
-        for (int i = 0; i < SOCharacters.Length; i++)
+        Debug.Assert(assets != null,
+            String.Format("Path ({0}) could not be found in the Resources folder.", path));
+
+        Debug.Assert(assets.Length == TotalNumberOfCharacters,
+            String.Format("Number of {0} assets ({1}) doesn't match the number of characters ({2})", typeof(T), assets.Length, TotalNumberOfCharacters));
+
+        return assets;
+    }
+
+
+    /// <summary>
+    /// Returns a unique IEnumerable tuple that represents a randomized character combination.
+    /// </summary>
+    /// <param name="people">Array of Person scriptable objects.</param>
+    /// <param name="roles">Array of Role scriptable objects.</param>
+    /// <returns>A unique IEnumerable tuple of a randomized character.</returns>
+    private IEnumerable<(SOPerson person, SORole role, int index)> RandomZip(SOPerson[] people, SORole[] roles)
+    {
+        Shuffle(people);
+        Shuffle(roles);
+
+        for (int i = 0; i < TotalNumberOfCharacters; i++)
         {
-            _characters[i] = new Character(SOCharacters[i]);
+            yield return (people[i], roles[i], i);
         }
     }
 
 
     /// <summary>
-    /// Randomly shuffles characters list using a Fisher-Yates algorithm.
+    /// Randomly shuffles an array using a Fisher–Yates shuffle.
     /// </summary>
-    private void ShuffleCharacterList()
+    /// <typeparam name="T">Array type.</typeparam>
+    /// <param name="array">Array to be shuffled.</param>
+    private void Shuffle<T>(T[] array)
     {
-        for (int i = _characters.Length - 1; i > 0; i--)
+        // Ya I just copy and pasted this from stack overflow :) - Diego
+        for (int i = array.Length - 1; i > 0; i--)
         {
             int j = UnityEngine.Random.Range(0, i + 1);
-            Character temp = _characters[i];
-            _characters[i] = _characters[j];
-            _characters[j] = temp;
-        }
-    }
-
-
-    /// <summary>
-    /// Assigns a role to each character. Assumes each role was given a unique role index and is of
-    /// equal length to the number of characters.
-    /// </summary>
-    private void AssignRoles()
-    {
-        SORole[] SORoles = Resources.LoadAll<SORole>("Roles");
-
-        for (int i = 0; i < SORoles.Length; i++)
-        {
-            SORole role = SORoles[i];
-            _characters[role.Index].AssignRole(role);
+            T temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
     }
 }
