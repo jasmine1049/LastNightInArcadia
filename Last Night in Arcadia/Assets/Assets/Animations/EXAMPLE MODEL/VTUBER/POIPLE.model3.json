@@ -1,0 +1,43 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "POIPLE.moc3",
+		"Textures": [
+			"POIPLE.2048/texture_00.png"
+		],
+		"Physics": "POIPLE.physics3.json",
+		"DisplayInfo": "POIPLE.cdi3.json",
+		"Motions": {
+			"": [
+				{
+					"File": "ANGRY.motion3.json"
+				},
+				{
+					"File": "BORED.motion3.json"
+				},
+				{
+					"File": "IDLE.motion3.json"
+				},
+				{
+					"File": "POG.motion3.json"
+				},
+				{
+					"File": "SAD.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	],
+	"HitAreas": []
+}
