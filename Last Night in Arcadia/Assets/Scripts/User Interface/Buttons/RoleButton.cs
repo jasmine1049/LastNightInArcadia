@@ -18,7 +18,7 @@ public class RoleButton : MyButton
     /// <param name="character">Character whose role will be used to initialize this button.</param>
     public override void Initialize(Character character)
     {
-        base.Initialize(character);
+        _index = character.RoleIndex;
 
         base.Icon.sprite = character.RoleIcon;
         base.Name.text = character.RoleName;
