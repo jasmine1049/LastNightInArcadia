@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
     private Character[] _characters;
+    private Executioner _executioner;
 
 
     public static GameManager Instance { get { return _instance; } private set { } }
     public Character[] Characters { get { return _characters; } private set { } }
+    public Executioner Executioner { get { return _executioner; } private set { } }
 
 
     /// <summary>
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
 
             _characters[character.index] = (Character)Activator.CreateInstance(type, character.person, character.role, character.index);
         }
+
+        CreateExecutioner();
     }
 
 
@@ -168,5 +172,16 @@ public class GameManager : MonoBehaviour
             array[i] = array[j];
             array[j] = temp;
         }
+    }
+
+
+    private void CreateExecutioner()
+    {
+        SOPerson executionerPerson = Resources.Load<SOPerson>("Executioner/ExecutionerPerson");
+        SORole executionerRole = Resources.Load<SORole>("Executioner/ExecutionerRole");
+
+        Type type = Type.GetType("Executioner");
+
+        _executioner = (Executioner)Activator.CreateInstance(type, executionerPerson, executionerRole, -1);
     }
 }

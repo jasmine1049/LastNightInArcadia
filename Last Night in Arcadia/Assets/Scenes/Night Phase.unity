@@ -679,11 +679,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 768299496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd98c28ee879a8346853dc7bbecee25f, type: 3}
+  m_Script: {fileID: 11500000, guid: 15beb4a185e6d024c8cedb486568985f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxNumberTargets: 3
-  _chooseRoleMenuButtonPrefab: {fileID: 484990836918525822}
   _chooseRoleMenuButtonGrid: {fileID: 1309613873}
 --- !u!1 &886154517
 GameObject:
@@ -3255,6 +3254,7 @@ MonoBehaviour:
   _roleText: {fileID: 3826917826681622861}
   _statusText: {fileID: 6989716658333608280}
   _colorWhenSelected: {r: 0.8018868, g: 0, b: 0, a: 1}
+  _colorWhenDead: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3266,5 +3266,5 @@ SceneRoots:
   - {fileID: 627217861}
   - {fileID: 1603967668}
   - {fileID: 1870035457}
-  - {fileID: 1217868988}
   - {fileID: 768299497}
+  - {fileID: 1217868988}

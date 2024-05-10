@@ -9,7 +9,6 @@ public class NightPhaseManager : MonoBehaviour
     [SerializeField] private int _maxNumberTargets;
 
     [Header("UI Element(s)")]
-    [SerializeField] private GameObject _chooseRoleMenuButtonPrefab;
     [SerializeField] private GameObject _chooseRoleMenuButtonGrid;
 
     private int _numTargetsChosen;

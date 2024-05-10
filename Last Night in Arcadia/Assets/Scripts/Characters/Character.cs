@@ -72,6 +72,13 @@ public class Character
     }
 
 
+    public void ClearTarget()
+    {
+        _target = null;
+        _targeter = null;
+    }
+
+
     /// <summary>
     /// Kills the character.
     /// </summary>

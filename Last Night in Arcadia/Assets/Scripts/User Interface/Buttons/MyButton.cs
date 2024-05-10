@@ -21,7 +21,7 @@ public abstract class MyButton : MonoBehaviour
     private bool _isSelected;
 
 
-    protected Image Icon { get { return _iconImage; } private set { } }
+    public Image Icon { get { return _iconImage; } private set { } }
     protected TextMeshProUGUI Name { get { return _nameText; } private set { } }
     protected bool IsSelected { get { return _isSelected; } private set { } }
     protected Button Button { get { return GetComponentInChildren<Button>(); } private set { } }

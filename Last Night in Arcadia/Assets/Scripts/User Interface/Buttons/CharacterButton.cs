@@ -11,6 +11,7 @@ public class CharacterButton : MyButton
     [SerializeField] private TextMeshProUGUI _roleText;
     [SerializeField] private TextMeshProUGUI _statusText;
     [SerializeField] private Color _colorWhenSelected;
+    [SerializeField] private Color _colorWhenDead;
 
 
     /// <summary>
@@ -44,7 +45,13 @@ public class CharacterButton : MyButton
         Character character = GameManager.Instance.GetCharacter(base.Index);
 
         _roleText.text = GetRoleText(character);
-        if (character.Targeter == null)
+
+        if (!character.IsAlive)
+        {
+            _statusText.text = GetLifeStatus(character);
+        }
+
+        else if (character.Targeter == null)
         {
             _statusText.text = GetLifeStatus(character);
         }
@@ -84,7 +91,13 @@ public class CharacterButton : MyButton
     {
         // This is it's own function can potentially this might be where I change the color
         // depending if the person is dead and was hostile vs non-hostile.
-        if (base.IsSelected)
+        if (!GameManager.Instance.GetCharacter(base.Index).IsAlive)
+        {
+            base.Button.GetComponent<Image>().color = _colorWhenDead;
+            base.Button.enabled = false;
+
+        }
+        else if (base.IsSelected)
         {
             base.Button.GetComponent<Image>().color = _colorWhenSelected;
         }
