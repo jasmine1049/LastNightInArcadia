@@ -5,46 +5,50 @@ using UnityEngine;
 
 public class Character
 {
-    private string _name;
-    private Sprite _portrait;
-    private SORole _role;
-    private bool _isRoleRevealed;
-    private bool _isAlive;
-    private bool _isBlocked;
-    private Character _target;
-    private Character _targeter;
-    private Character _killer;
-    private Bodyguard _guard;
+    protected int _index;
+    protected bool _isAlive;
+    protected bool _isRoleRevealed;
+    protected Character _target;
+    protected Character _targeter;
+    protected Character _killer;
 
-    // variables from _role
-    public int Index { get { return _role.Index; } private set { } }
-    public Sprite RoleIcon { get { return _role.Icon; } private set { } }
-    public string RoleName { get { return _role.Name; } private set { } }
-    public string RoleDescription { get { return _role.Description; } private set { } }
-    public bool IsAllied { get { return _role.IsAllied; } private set { } }
-    public bool IsHostile { get { return _role.IsAllied; } private set { } }
+    protected SOPerson _person;
+    protected SORole _role;
 
-    // variables from Character
-    public bool IsBlocked { get { return _role.IsAllied; } private set { } }
-    public Bodyguard Guard { get { return _guard; } private set { } }
-    public string Name { get { return _name; } private set { } }
-    public Sprite Portrait { get { return _portrait; } private set { } }
-    public bool IsRoleRevealed { get { return _isRoleRevealed; } private set { } }
+
+    // Public getters for Character
+    public int Index { get { return _index; } private set { } }
     public bool IsAlive { get { return _isAlive; } private set { } }
+    public bool IsRoleRevealed { get { return _isRoleRevealed; } private set { } }
     public Character Target { get { return _target; } private set { } }
     public Character Targeter { get { return _targeter; } private set { } }
     public Character Killer { get { return _killer; } private set { } }
 
+    // Public getters from Person
+    public string Name { get { return _person.Name; } private set { } }
+    public Sprite Portrait { get { return _person.Portrait; } private set { } }
+
+    // Public getters from Role
+    public string RoleName { get { return _role.Name; } private set { } }
+    public string RoleDescription { get { return _role.Description; } private set { } }
+    public Sprite RoleIcon { get { return _role.Icon; } private set { } }
+    public int RoleIndex { get { return _role.Index; } private set { } }
+    public bool IsAllied { get { return _role.IsAllied; } private set { } }
+    public bool IsHostile { get { return _role.IsHostile; } private set { } }
+
 
     /// <summary>
-    /// Constructor for a new character class.
+    /// Initializes the character base class from the given scriptable object.
     /// </summary>
-    /// <param name="character"></param>
-    public Character(SOCharacter character)
+    /// <param name="person">Random and unique person scriptable object.</param>
+    /// <param name="role">Random and unique role scriptable object.</param>
+    /// <param name="index">Index of this Character in the character's array.</param>
+    public Character(SOPerson person, SORole role, int index)
     {
-        _name = character.Name;
-        _portrait = character.Portrait;
-        _isRoleRevealed = false;
+        _person = person;
+        _role = role;
+        _index = index;
+
         _isAlive = true;
     }
 
@@ -63,31 +67,46 @@ public class Character
 
 
     /// <summary>
-    /// Sets character's role.
+    /// Sets the character's target.
     /// </summary>
-    /// <param name="role"></param>
-    public void AssignRole(SORole role)
-    {
-        _role = role;
-    }
-
-
+    /// <param name="target">Target character that this character will perform their action on.</param>
     public void SetTarget(Character target)
     {
         _target = target;
     }
 
 
+    /// <summary>
+    /// Sets the character's targeter.
+    /// </summary>
+    /// <param name="targeter">Character who is targeting this character.</param>
     public void SetTargeter(Character targeter)
     {
         _targeter = targeter;
     }
 
 
+    public void ClearTarget()
+    {
+        _target = null;
+        _targeter = null;
+    }
+
+
+    /// <summary>
+    /// Kills the character.
+    /// </summary>
+    public virtual void Kill(Character killer)
+    {
+        _isAlive = false;
+        _isRoleRevealed = true;
+        _killer = killer;
+    }
+
+
     /// <summary>
     /// Base method to be overwritten by each character class.
     /// </summary>
-    /// After TakeAction is done, the target should be cleared!!!
     public virtual void TakeAction()
     {
         Target = null;

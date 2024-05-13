@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd7066b24be3b64d8abe7f2f58646f4, type: 3}
   m_Name: Marksman
   m_EditorClassIdentifier: 
-  _name: Marksman
   _description: Can stand guard overnight (max 3 times per game). Will kill anyone
     who interacts with them while on guard, regardless of alignment (except for "OVERSEER").
     After killing a hostile suspect, ability is disabled for the remainder of the
     game.
   _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
-  _type: 1
   _index: 5
-  _moralLossOnDeath: 0
-  _moralLossOnExecution: 0
+  _alignment: 1
+  _moralLossOnDeath: 5
+  _moralLossOnExecution: 20

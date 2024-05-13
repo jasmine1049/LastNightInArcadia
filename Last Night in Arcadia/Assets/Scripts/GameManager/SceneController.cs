@@ -11,6 +11,10 @@ public class SceneController : MonoBehaviour
     public void LoadNextScene()
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextScene >= SceneManager.sceneCountInBuildSettings)
+        {
+            nextScene = 1;
+        }
         StartCoroutine(AsyncLoadScene(nextScene));
     }
 

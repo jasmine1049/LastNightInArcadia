@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bodyguard : Character
 {
-    public Bodyguard(SOCharacter character) : base(character)
+    public Bodyguard(SOPerson person, SORole role, int index) : base(person, role, index)
     {
+
     }
-    //TO BE IMPLEMENTED
 }

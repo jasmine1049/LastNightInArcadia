@@ -493,7 +493,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.35
+  m_fontSize: 35.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.9
+  m_fontSize: 33.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1090,6 +1090,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803063599}
   m_CullTransparentMesh: 1
+--- !u!1 &885772581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7632187339396652315, guid: 33e94b69254f6d441b9c91f65e125ef9, type: 3}
+  m_PrefabInstance: {fileID: 3286516836901762904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &894090797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,10 +1365,10 @@ RectTransform:
   - {fileID: 528180693}
   m_Father: {fileID: 2066814021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39750004, y: 0.20481251}
-  m_AnchorMax: {x: 0.60749996, y: 0.29830402}
-  m_AnchoredPosition: {x: 0.531723, y: 0.7271118}
-  m_SizeDelta: {x: 3.0634, y: -1.4541}
+  m_AnchorMin: {x: 0.39625004, y: 0.20922254}
+  m_AnchorMax: {x: 0.6125001, y: 0.29830402}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_SizeDelta: {x: -0.000015259, y: 0.0000076294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958275188
 MonoBehaviour:
@@ -1628,10 +1633,10 @@ RectTransform:
   - {fileID: 803063600}
   m_Father: {fileID: 2066814021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39625004, y: 0.58500004}
-  m_AnchorMax: {x: 0.61, y: 0.6721626}
-  m_AnchoredPosition: {x: 0.7249756, y: 1.2081909}
-  m_SizeDelta: {x: 1.4489, y: -2.4155}
+  m_AnchorMin: {x: 0.39625004, y: 0.5894451}
+  m_AnchorMax: {x: 0.6125001, y: 0.6721626}
+  m_AnchoredPosition: {x: 0.0002670288, y: 0.00022125244}
+  m_SizeDelta: {x: -0.00053406, y: 0.00043488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203950445
 MonoBehaviour:
@@ -1956,7 +1961,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.5
+  m_fontSize: 33.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2040,10 +2045,10 @@ RectTransform:
   - {fileID: 1485010219}
   m_Father: {fileID: 2066814021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39625004, y: 0.33318752}
-  m_AnchorMax: {x: 0.61, y: 0.42247912}
-  m_AnchoredPosition: {x: 0.2987213, y: 1.3699036}
-  m_SizeDelta: {x: 0.59836, y: -2.7407}
+  m_AnchorMin: {x: 0.39625, y: 0.33985505}
+  m_AnchorMax: {x: 0.6125001, y: 0.42247912}
+  m_AnchoredPosition: {x: 0.000289917, y: -0.0000076293945}
+  m_SizeDelta: {x: -0.00056458, y: -0.000026703}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635860171
 MonoBehaviour:
@@ -2231,6 +2236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5545575381590738943, guid: 1ecb72735ee518544ab46c026f3ef026, type: 3}
+      propertyPath: _totalNumCharacters
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 5966792781028118583, guid: 1ecb72735ee518544ab46c026f3ef026, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2412,10 +2421,10 @@ RectTransform:
   - {fileID: 621847273}
   m_Father: {fileID: 2066814021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39875004, y: 0.455}
-  m_AnchorMax: {x: 0.61, y: 0.5435753}
-  m_AnchoredPosition: {x: -0.05038452, y: 1.027298}
-  m_SizeDelta: {x: 3.8982, y: -2.0552}
+  m_AnchorMin: {x: 0.39625004, y: 0.45944503}
+  m_AnchorMax: {x: 0.6125001, y: 0.5435753}
+  m_AnchoredPosition: {x: 0.0002746582, y: -0.0001487732}
+  m_SizeDelta: {x: -0.00048828, y: -0.00028992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1823790520
 MonoBehaviour:
@@ -2699,6 +2708,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7870632751130134722, guid: 33e94b69254f6d441b9c91f65e125ef9, type: 3}
+      propertyPath: _sortType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870632751130134722, guid: 33e94b69254f6d441b9c91f65e125ef9, type: 3}
+      propertyPath: _characterType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870632751130134722, guid: 33e94b69254f6d441b9c91f65e125ef9, type: 3}
+      propertyPath: _buttonGameObject
+      value: 
+      objectReference: {fileID: 885772581}
     - target: {fileID: 8645613141692994377, guid: 33e94b69254f6d441b9c91f65e125ef9, type: 3}
       propertyPath: m_Name
       value: Instructions Canvas

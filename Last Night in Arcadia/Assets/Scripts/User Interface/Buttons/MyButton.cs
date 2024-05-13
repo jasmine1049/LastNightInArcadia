@@ -17,11 +17,11 @@ public abstract class MyButton : MonoBehaviour
     [SerializeField] private GameObject _activateUIObject;
     */
 
-    private int _index;
+    protected int _index;
     private bool _isSelected;
 
 
-    protected Image Icon { get { return _iconImage; } private set { } }
+    public Image Icon { get { return _iconImage; } private set { } }
     protected TextMeshProUGUI Name { get { return _nameText; } private set { } }
     protected bool IsSelected { get { return _isSelected; } private set { } }
     protected Button Button { get { return GetComponentInChildren<Button>(); } private set { } }
@@ -35,10 +35,7 @@ public abstract class MyButton : MonoBehaviour
     }
 
 
-    public virtual void Initialize(Character character)
-    {
-        _index = character.Index;
-    }
+    public abstract void Initialize(Character character);
 
 
     public virtual void OnClick()
