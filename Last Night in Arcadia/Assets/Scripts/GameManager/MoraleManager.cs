@@ -13,6 +13,8 @@ public class MoraleManager : MonoBehaviour
 
 
     public int CurrentMorale { get { return _currentMorale; } private set { } }
+    public int MinMorale { get { return _maxMorale; } private set { } }
+    public int MaxMorale { get { return _maxMorale; } private set { } }
 
 
     /// <summary>
