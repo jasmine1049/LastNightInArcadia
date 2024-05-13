@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public const int TotalNumberOfCharacters = 16;
+    private const int EXECUTIONER_INDEX = -1;
 
     private static GameManager _instance;
     private Character[] _characters;
@@ -14,7 +15,6 @@ public class GameManager : MonoBehaviour
 
 
     public static GameManager Instance { get { return _instance; } private set { } }
-    public Character[] Characters { get { return _characters; } private set { } }
     public Executioner Executioner { get { return _executioner; } private set { } }
 
 
@@ -72,6 +72,18 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
+    /// Returns a copy of the character's array.
+    /// </summary>
+    /// <returns></returns>
+    public Character[] GetCharacters()
+    {
+        List<Character> characters = new List<Character>(_characters);
+
+        return characters.ToArray();
+    }
+
+
+    /// <summary>
     /// Returns an array of characters that match the given condition.
     /// </summary>
     /// <param name="condition">A function that takes in a Character as a parameter and returns a bool.</param>
@@ -112,10 +124,18 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="targeter">The character whose going to act upon the target.</param>
     /// <param name="target">Character who will be acted upon by the targeter.</param>
-    public void SetTarget(int targeter, int target)
+    public void SetTarget(Character targeter, Character target)
     {
-        _characters[targeter].SetTarget(_characters[target]);
-        _characters[target].SetTargeter(_characters[targeter]);
+        if (targeter.Index == EXECUTIONER_INDEX)
+        {
+            _executioner.SetTarget(target);
+        }
+        else
+        {
+            _characters[targeter.Index].SetTarget(target);
+        }
+
+        _characters[target.Index].SetTargeter(targeter);
     }
 
 
@@ -181,7 +201,9 @@ public class GameManager : MonoBehaviour
         SORole executionerRole = Resources.Load<SORole>("Executioner/ExecutionerRole");
 
         Type type = Type.GetType("Executioner");
+        Debug.Assert(type != null,
+                String.Format("{0} is not a valid type. Check spelling of scriptable object and associated script.", executionerRole.Name));
 
-        _executioner = (Executioner)Activator.CreateInstance(type, executionerPerson, executionerRole, -1);
+        _executioner = (Executioner)Activator.CreateInstance(type, executionerPerson, executionerRole, EXECUTIONER_INDEX);
     }
 }

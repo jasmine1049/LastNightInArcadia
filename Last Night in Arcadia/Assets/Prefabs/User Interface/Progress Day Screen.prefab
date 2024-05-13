@@ -96,7 +96,7 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 854567154877873480}
   - component: {fileID: 2031947263730205187}
   m_Layer: 5
-  m_Name: Progress Day Canvas
+  m_Name: Progress Day Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,9 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb165d624ae3bc489d0fd3e4b3b525a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayText: {fileID: 7432365595203754971}
-  _dateText: {fileID: 7325657836772735491}
-  _moraleText: {fileID: 3078240675043674790}
+  _day: {fileID: 7432365595203754971}
+  _date: {fileID: 7325657836772735491}
+  _morale: {fileID: 3078240675043674790}
   _breakPoints: 64000000500000003c000000280000001400000000000000
   _breakPointTexts:
   - YIPEEEE
@@ -433,11 +433,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.75
+  m_fontSize: 49.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -567,11 +567,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.65
+  m_fontSize: 49.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1643060640221407422}
   - component: {fileID: 5896861004435682976}
   m_Layer: 5
-  m_Name: Button Grid
+  m_Name: Character Button Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851f1137642c85e47ad5ac36c7f08d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonGameObject: {fileID: 0}
+  _characterButtonPrefab: {fileID: 0}
+  _objectToDeactivateOnClick: {fileID: 0}
+  _objectToActivateOnClick: {fileID: 0}
   _characterType: 0
   _sortType: 0
+  _sortByRoleInfo: 0
 --- !u!114 &5896861004435682976
 MonoBehaviour:
   m_ObjectHideFlags: 0

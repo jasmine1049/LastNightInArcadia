@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(FlexibleGridLayout))]
-public class ButtonGrid : MonoBehaviour
+public class CharacterButtonGrid : MonoBehaviour
 {
     private enum CharacterType
     {
@@ -20,13 +20,18 @@ public class ButtonGrid : MonoBehaviour
     }
 
 
-    [Header("Button")]
-    [Tooltip("Game object must derive from MyButton abstract class.")]
-    [SerializeField] private GameObject _buttonGameObject;
+    [Header("Character Button")]
+    [Tooltip("Game object must derive from CharacterButton abstract class.")]
+    [SerializeField] private GameObject _characterButtonPrefab;
+    [Tooltip("UI object to be deactivated on button click.")]
+    [SerializeField] private GameObject _objectToDeactivateOnClick;
+    [Tooltip("UI object to activate on button click.")]
+    [SerializeField] private GameObject _objectToActivateOnClick;
 
     [Header("Display Option(s)")]
     [SerializeField] private CharacterType _characterType;
     [SerializeField] private SortType _sortType;
+    [SerializeField] private bool _sortByRoleInfo;
 
     private Character[] _characters;
 
@@ -36,20 +41,24 @@ public class ButtonGrid : MonoBehaviour
     /// </summary>
     void Start()
     {
+        CharacterButton characterButton = _characterButtonPrefab.GetComponent<CharacterButton>();
+        Debug.Assert(characterButton != null,
+            String.Format("{0} does not have a CharacterButton component attatched.", _characterButtonPrefab.name));
+
         SetCharactersArray();
         SortCharactersArray();
-        FillGrid();
+        FillCharacterButtonGrid();
     }
 
 
     /// <summary>
-    /// Returns a character's array of the desired character type.
+    /// Sets the character's array based off the character type.
     /// </summary>
     private void SetCharactersArray()
     {
         if (_characterType == CharacterType.All)
         {
-            _characters = GameManager.Instance.Characters;
+            _characters = GameManager.Instance.GetCharacters();
         }
         else
         {
@@ -59,22 +68,20 @@ public class ButtonGrid : MonoBehaviour
 
 
     /// <summary>
-    /// Sorts a character's array based off the SortType and button type.
+    /// Sorts a character's array based off the SortType.
     /// </summary>
     private void SortCharactersArray()
     {
-        bool isRoleButton = (_buttonGameObject.GetComponent<RoleButton>() != null);
-
         if (_sortType == SortType.Index)
         {
-            if (isRoleButton)
+            if (_sortByRoleInfo)
             {
                 System.Array.Sort(_characters, (c1, c2) => { return c1.RoleIndex.CompareTo(c2.RoleIndex); });
             }
         }
         else
         {
-            if (isRoleButton)
+            if (_sortByRoleInfo)
             {
                 System.Array.Sort(_characters, (c1, c2) => { return c1.RoleName.CompareTo(c2.RoleName); });
             }
@@ -89,17 +96,15 @@ public class ButtonGrid : MonoBehaviour
     /// <summary>
     /// Instantiates and initializes buttons on the Button Grid.
     /// </summary>
-    private void FillGrid()
+    private void FillCharacterButtonGrid()
     {
         foreach (Character character in _characters)
         {
-            GameObject obj = Instantiate(_buttonGameObject, this.transform);
-            obj.SetActive(true);
+            GameObject gameObject = Instantiate(_characterButtonPrefab, this.transform);
 
-            if (obj.TryGetComponent<MyButton>(out MyButton button))
-            {
-                button.Initialize(character);
-            }
+            CharacterButton characterButton = gameObject.GetComponent<CharacterButton>();
+
+            characterButton.Initialize(character, _objectToDeactivateOnClick, _objectToActivateOnClick);
         }
     }
 }

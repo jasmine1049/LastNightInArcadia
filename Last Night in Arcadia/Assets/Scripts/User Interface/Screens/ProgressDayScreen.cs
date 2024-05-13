@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class ProgressDayScreen : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI _dayText;
-    [SerializeField] private TextMeshProUGUI _dateText;
-    [SerializeField] private TextMeshProUGUI _moraleText;
+    [SerializeField] private TextMeshProUGUI _day;
+    [SerializeField] private TextMeshProUGUI _date;
+    [SerializeField] private TextMeshProUGUI _morale;
 
     [Header("Morale Text Breakpoints")]
     [Tooltip("List from highest to lowest.")]
@@ -24,13 +24,6 @@ public class ProgressDayScreen : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject _nextUIPage;
 
     private DayTracker _dayTracker;
-
-    /*
-     * In order to get the 2nd run of the ProgressDayUI working I'm thinking that what I can do is
-     * have a tracker of how many time's OnPointerClick has been pressed. If it's still on its
-     * first go then it just does the funny activate/deactive. If it's not then that's when it
-     * goes to the next scene (plus advance the time of day)!!
-     */
 
 
     /// <summary>
@@ -60,9 +53,9 @@ public class ProgressDayScreen : MonoBehaviour, IPointerClickHandler
     {
         _dayTracker = GameManager.Instance.GetComponent<DayTracker>();
 
-        _dayText.text = FormatDayText();
-        _dateText.text = FormatDateText();
-        _moraleText.text = FormatMoraleText();
+        _day.text = FormatDayText();
+        _date.text = FormatDateText();
+        _morale.text = FormatMoraleText();
     }
 
 

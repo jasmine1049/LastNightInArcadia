@@ -12,40 +12,43 @@ public class NightPhaseManager : MonoBehaviour
     [SerializeField] private GameObject _chooseRoleMenuButtonGrid;
 
     private int _numTargetsChosen;
-    private RoleButton _roleButton;
+    private ChooseRoleMenuButton _chooseRoleMenuButton;
+
+
+    public void DeselectChooseRoleMenuButton()
+    {
+        _chooseRoleMenuButton.Deselect();
+    }
 
 
     private void OnEnable()
     {
-        Actions.OnRoleButtonClicked += SetRoleButton;
-        Actions.OnCharacterButtonClicked += SetTarget;
+        Actions.OnChooseRoleMenuButtonClicked += SetChooseRoleMenuButton;
+        Actions.OnChooseTargetMenuButtonClicked += SetTarget;
     }
 
 
     private void OnDisable()
     {
-        Actions.OnRoleButtonClicked -= SetRoleButton;
-        Actions.OnCharacterButtonClicked -= SetTarget;
+        Actions.OnChooseRoleMenuButtonClicked -= SetChooseRoleMenuButton;
+        Actions.OnChooseTargetMenuButtonClicked -= SetTarget;
     }
 
 
-    private void SetRoleButton(RoleButton roleButton)
+    private void SetChooseRoleMenuButton(ChooseRoleMenuButton chooseRoleMenuButton)
     {
-        _roleButton = roleButton;
+        _chooseRoleMenuButton = chooseRoleMenuButton;
     }
 
 
-    private void SetTarget(CharacterButton characterButton)
+    private void SetTarget(ChooseTargetMenuButton chooseTargetMenuButton)
     {
-        // only enable this false if we've chosen a role and come back out of it.
-        _roleButton.GetComponentInChildren<Button>(true).enabled = false;
+        GameManager.Instance.SetTarget(_chooseRoleMenuButton.Character, chooseTargetMenuButton.Character);
 
-        GameManager.Instance.SetTarget(_roleButton.Index, characterButton.Index);
+        _chooseRoleMenuButton.SetTargetCharacterPortrait(chooseTargetMenuButton.Character.Portrait);
+        _chooseRoleMenuButton.UpdateUI();
 
-        _roleButton.UpdateUI();
-        _roleButton.SetTargetPortrait(characterButton.Index);
-
-        characterButton.UpdateUI();
+        chooseTargetMenuButton.UpdateUI();
 
         CheckMaxNumberTargets();
     }

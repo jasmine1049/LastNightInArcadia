@@ -11,7 +11,9 @@ public class NextPhaseButton : MonoBehaviour
     void Start()
     {
         Button button = GetComponent<Button>();
+
         button.onClick.AddListener(ProgressTime);
+        button.onClick.AddListener(TakeActions);
         button.onClick.AddListener(LoadNextScene);
     }
 
@@ -26,11 +28,19 @@ public class NextPhaseButton : MonoBehaviour
 
 
     /// <summary>
+    /// Calls TakeActions() from the game manager.
+    /// </summary>
+    private void TakeActions()
+    {
+        GameManager.Instance.TakeActions();
+    }
+
+
+    /// <summary>
     /// Calls LoadNextScene() from the Scene Controller.
     /// </summary>
     private void LoadNextScene()
     {
         GameManager.Instance.GetComponent<SceneController>().LoadNextScene();
-        GameManager.Instance.TakeActions();
     }
 }

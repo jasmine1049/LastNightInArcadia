@@ -14,6 +14,7 @@ public class FlexibleGridLayout : LayoutGroup
         FixedColumns
     }
 
+
     [Header("Grid Sizing")]
     [SerializeField] private FitType _fitType;
     [SerializeField] private int _rows;
@@ -94,6 +95,7 @@ public class FlexibleGridLayout : LayoutGroup
     {
         int rowIndex = 0;
         int columnIndex = 0;
+
         for (int i = 0; i < this.transform.childCount; i++)
         {
             rowIndex = i / _columns;

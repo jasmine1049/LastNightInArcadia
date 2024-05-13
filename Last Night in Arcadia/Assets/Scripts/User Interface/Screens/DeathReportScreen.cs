@@ -40,6 +40,8 @@ public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
     private void UpdateText()
     {
         // This is where I would iterate over all the dead people and make a report for them.
-        // I need serialized fields for the icon and text description(s)
+        // I would need serialized fields for the icon and texts
+        // 
+        // From there probably jsut a bunch of FormatText type functinos for each TextMeshProUGUI thingy
     }
 }
