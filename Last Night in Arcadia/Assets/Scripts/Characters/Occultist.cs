@@ -9,6 +9,7 @@ public class Occultist : Character
 
     }
 
+
     public override void TakeAction()
     {
         if (IsAlive && !IsBlocked)
@@ -18,7 +19,7 @@ public class Occultist : Character
                 Reveal();
                 return;
             }
-            else
+            else if (_target != null)
             {
                 Target.Kill();
                 if (!Target.IsHostile)

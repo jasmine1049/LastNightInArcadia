@@ -109,12 +109,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void TakeActions()
     {
-        foreach (Character character in _characters)
+        _executioner.TakeAction();
+
+        foreach (Character character in GetCharacters(c => c.IsAlive))
         {
-            if (character.IsAlive)
-            {
-                character.TakeAction();
-            }
+            character.TakeAction();
         }
     }
 

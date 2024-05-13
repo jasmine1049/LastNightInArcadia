@@ -89,26 +89,20 @@ public class Character
     }
 
 
-    public void ClearTarget()
-    {
-        _target = null;
-        _targeter = null;
-    }
-
-
     /// <summary>
     /// Kills the character.
     /// </summary>
-    public virtual void Kill(Character killer)
+    public void Kill(Character killer)
     {
         _isAlive = false;
         _isRoleRevealed = true;
         _killer = killer;
     }
 
+
     public void Reveal()
     {
-        IsRoleRevealed = true;
+        _isRoleRevealed = true;
     }
 
 
@@ -117,7 +111,7 @@ public class Character
     /// </summary>
     public virtual void TakeAction()
     {
-        Target = null;
-        IsBlocked = false;
+        _target = null;
+        _isBlocked = false;
     }
 }
