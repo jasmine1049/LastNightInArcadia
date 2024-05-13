@@ -5,23 +5,44 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    // Assumes the first gameplay scene has buildIndex == 1.
+    private readonly int _firstGameplayScene = 1;
+
+
     /// <summary>
-    /// Starts a coroutine to load the next scene in the background.
+    /// Starts a coroutine to load the next scene in the gameplay loop.
     /// </summary>
     public void LoadNextScene()
     {
-        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        int nextScene = GetNextScene();
+
         StartCoroutine(AsyncLoadScene(nextScene));
     }
 
 
     /// <summary>
-    /// Starts a coroutine to load the given scene in the background.
+    /// Quits the player application.
     /// </summary>
-    /// <param name="scene"></param>
-    public void LoadScene(int scene)
+    public void QuitGame()
     {
-        StartCoroutine(AsyncLoadScene(scene));
+        Application.Quit();
+    }
+
+
+    /// <summary>
+    /// Returns the next scene in the gameplay loop.
+    /// </summary>
+    /// <returns>Next scene in the gameplay loop.</returns>
+    private int GetNextScene()
+    {
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (nextScene >= SceneManager.sceneCountInBuildSettings)
+        {
+            nextScene = _firstGameplayScene;
+        }
+
+        return nextScene;
     }
 
 
@@ -37,14 +58,5 @@ public class SceneController : MonoBehaviour
         {
             yield return null;
         }
-    }
-
-
-    /// <summary>
-    /// Quits the player application.
-    /// </summary>
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

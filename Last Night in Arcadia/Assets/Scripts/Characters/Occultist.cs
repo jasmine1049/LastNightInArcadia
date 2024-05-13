@@ -9,9 +9,25 @@ public class Occultist : Character
 
     }
 
-
     public override void TakeAction()
     {
-
+        if (IsAlive && !IsBlocked)
+        {
+            if (Target == this)
+            {
+                Reveal();
+                return;
+            }
+            else
+            {
+                Target.Kill();
+                if (!Target.IsHostile)
+                {
+                    Reveal();
+                    this.Kill();
+                }
+            }
+        }
+        base.TakeAction();
     }
 }

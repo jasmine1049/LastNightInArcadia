@@ -8,10 +8,4 @@ public class Bodyguard : Character
     {
 
     }
-
-
-    public override void TakeAction()
-    {
-
-    }
 }

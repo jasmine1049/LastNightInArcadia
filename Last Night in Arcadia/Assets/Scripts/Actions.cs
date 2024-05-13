@@ -5,7 +5,9 @@ using UnityEngine;
 
 public static class Actions
 {
-    public static Action<RoleButton> OnRoleButtonClicked;
-
     public static Action<CharacterButton> OnCharacterButtonClicked;
+
+    public static Action<ChooseRoleMenuButton> OnChooseRoleMenuButtonClicked;
+
+    public static Action<ChooseTargetMenuButton> OnChooseTargetMenuButtonClicked;
 }

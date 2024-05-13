@@ -33,6 +33,7 @@ public class SORole : ScriptableObject
 
     public int Index { get { return _index; } private set { } }
     public bool IsAllied { get { return _alignment == RoleAlignment.Allied; } private set { } }
+    public bool IsHostile { get { return _alignment == RoleAlignment.Hostile; } private set { } }
     public int MoraleLossOnDeath { get { return _moralLossOnDeath; } private set { } }
     public int MoraleLossOnExecution { get { return _moralLossOnExecution; } private set { } }
 }
