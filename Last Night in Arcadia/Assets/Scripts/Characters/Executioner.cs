@@ -12,6 +12,10 @@ public class Executioner : Character
 
     public override void TakeAction()
     {
-        _target.Kill(this);
+        if (_target != null)
+        {
+            _target.Kill(this);
+            base.TakeAction();
+        }
     }
 }
