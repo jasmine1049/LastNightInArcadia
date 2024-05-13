@@ -8,9 +8,11 @@ public class Character
     protected int _index;
     protected bool _isAlive;
     protected bool _isRoleRevealed;
+    protected bool _isBlocked;
     protected Character _target;
     protected Character _targeter;
     protected Character _killer;
+    private Bodyguard _guard;
 
     protected SOPerson _person;
     protected SORole _role;
@@ -20,6 +22,7 @@ public class Character
     public int Index { get { return _index; } private set { } }
     public bool IsAlive { get { return _isAlive; } private set { } }
     public bool IsRoleRevealed { get { return _isRoleRevealed; } private set { } }
+    public bool IsBlocked { get { return _isBlocked; } private set { } }
     public Character Target { get { return _target; } private set { } }
     public Character Targeter { get { return _targeter; } private set { } }
     public Character Killer { get { return _killer; } private set { } }
@@ -101,6 +104,11 @@ public class Character
         _isAlive = false;
         _isRoleRevealed = true;
         _killer = killer;
+    }
+
+    public void Reveal()
+    {
+        IsRoleRevealed = true;
     }
 
 

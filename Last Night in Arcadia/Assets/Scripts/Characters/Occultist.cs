@@ -15,6 +15,7 @@ public class Occultist : Character
         {
             if (Target == this)
             {
+                Reveal();
                 return;
             }
             else
@@ -22,6 +23,7 @@ public class Occultist : Character
                 Target.Kill();
                 if (!Target.IsHostile)
                 {
+                    Reveal();
                     this.Kill();
                 }
             }
