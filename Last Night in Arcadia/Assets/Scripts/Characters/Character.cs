@@ -94,9 +94,16 @@ public class Character
     /// </summary>
     public void Kill(Character killer)
     {
-        _isAlive = false;
-        _isRoleRevealed = true;
-        _killer = killer;
+        if (_guard == null)
+        {
+            _isAlive = false;
+            _isRoleRevealed = true;
+            _killer = killer;
+        }
+        else
+        {
+            // implement guard behavoir and call functionality here
+        }
     }
 
 
@@ -111,6 +118,8 @@ public class Character
     /// </summary>
     public virtual void TakeAction()
     {
+        if (_target != null)
+            Debug.Log("character " + RoleName + " taking action on target " + Target._person.Name);
         _target = null;
         _isBlocked = false;
     }

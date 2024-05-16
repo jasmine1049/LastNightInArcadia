@@ -21,11 +21,11 @@ public class Occultist : Character
             }
             else if (_target != null)
             {
-                Target.Kill();
+                Target.Kill(this);
                 if (!Target.IsHostile)
                 {
                     Reveal();
-                    this.Kill();
+                    this.Kill(this);
                 }
             }
         }
