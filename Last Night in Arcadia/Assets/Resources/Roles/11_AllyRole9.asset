@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdd7066b24be3b64d8abe7f2f58646f4, type: 3}
-  m_Name: Trickster
+  m_Name: 11_AllyRole9
   m_EditorClassIdentifier: 
-  _description: "Selects one of your commanded allies every night to distract, prevent
-    them from using their abilities successfully. ^EXPAND- that\u2019s just too annoying
-    if there are no conditions. The only hostile role that does not need to be killed
-    to win."
+  _description: TBD
   _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
-  _index: 0
-  _alignment: 2
-  _moralLossOnDeath: 0
-  _moralLossOnExecution: -15
+  _index: 11
+  _alignment: 1
+  _moralLossOnDeath: 5
+  _moralLossOnExecution: 20
+  _title: AllyRole9

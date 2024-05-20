@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdd7066b24be3b64d8abe7f2f58646f4, type: 3}
-  m_Name: Coroner
+  m_Name: 7_Coroner
   m_EditorClassIdentifier: 
   _description: Can target a dead suspect to search for clues. Investigating a victim
     reveals the identity of the suspect they most recently interacted with (visited
@@ -24,3 +24,4 @@ MonoBehaviour:
   _alignment: 1
   _moralLossOnDeath: 5
   _moralLossOnExecution: 20
+  _title: Coroner

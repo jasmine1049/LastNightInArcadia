@@ -11,21 +11,23 @@ public class Bodyguard : Character
         injuryClock = 0;
     }
 
-    public override void TakeAction()
+    protected override void MainAction()
     {
-        if (Target == this)
+        if (IsUsable())
         {
-            Reveal();
-        }
-        if (Target != null)
-        {
-            Target.SetGuard(this);
+            if (Target == this)
+            {
+                Reveal();
+            }
+            if (Target != null)
+            {
+                Target.SetGuard(this);
+            }
         }
         if (GameManager.Instance.GetTimeOfDay() == DayTracker.TimesOfDay.Night)
         {
             injuryClock--;
         }
-        base.TakeAction();
     }
 
     public override bool IsUsable()

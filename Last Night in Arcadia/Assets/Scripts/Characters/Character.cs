@@ -57,7 +57,7 @@ public class Character
 
     public virtual bool IsUsable()
     {
-        return _isAlive;
+        return _isAlive && !IsBlocked;
     }
 
     /// <summary>
@@ -95,6 +95,10 @@ public class Character
     /// </summary>
     public bool Kill(Character killer)
     {
+        if (this is Marksman)
+        {
+            Debug.Log("I AM THE MARKSMAN " + RoleName);
+        }
         if (_guard == null)
         {
             _isAlive = false;
@@ -117,15 +121,36 @@ public class Character
         _isRoleRevealed = true;
     }
 
+    protected virtual void PreAction()
+    {
+        if (Target is Marksman && ((Marksman)Target).Target != null && Target.IsUsable())
+        {
+            ((Marksman)Target).DoKill();
+            this.Kill(Target);
+        }
+    }
+
+    protected virtual void PostAction()
+    {
+        if (_target != null)
+            Debug.Log("character " + RoleName + " (" + _person.Name + ") taking action on target " + Target._person.Name);
+        _target = null;
+        _isBlocked = false;
+    }
+
 
     /// <summary>
     /// Base method to be overwritten by each character class.
     /// </summary>
     public virtual void TakeAction()
     {
-        if (_target != null)
-            Debug.Log("character " + RoleName + " (" + _person.Name + ") taking action on target " + Target._person.Name);
-        _target = null;
-        _isBlocked = false;
+        PreAction();
+        MainAction();
+        PostAction();
+    }
+
+    protected virtual void MainAction()
+    {
+        return;
     }
 }

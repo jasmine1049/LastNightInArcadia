@@ -9,10 +9,9 @@ public class Occultist : Character
 
     }
 
-
-    public override void TakeAction()
+    protected override void MainAction()
     {
-        if (IsAlive && !IsBlocked)
+        if (IsUsable())
         {
             if (Target == this)
             {
@@ -27,6 +26,5 @@ public class Occultist : Character
                 }
             }
         }
-        base.TakeAction();
     }
 }
