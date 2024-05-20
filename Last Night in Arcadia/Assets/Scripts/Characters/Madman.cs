@@ -14,15 +14,21 @@ public class Madman : Character
     }
 
 
-    public override void TakeAction()
+    protected override void MainAction()
     {
-        if (_target == null)
+        DayTracker dayTracker = GameManager.Instance.GetComponent<DayTracker>();
+
+        if (_target == null && dayTracker.GetTimeOfDayEnum() == DayTracker.TimesOfDay.Evening)
         {
             CheckRandomKillChance();
         }
-        else
+        else if (_target != null)
         {
             _target.Kill(this);
+        }
+        else if (_targeter is Executioner)
+        {
+            KillRandomCharacter();
         }
     }
 
@@ -58,6 +64,6 @@ public class Madman : Character
 
         GameManager.Instance.SetTarget(this, characters[randomIndex]);
 
-        TakeAction();
+        MainAction();
     }
 }

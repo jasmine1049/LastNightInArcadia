@@ -57,7 +57,7 @@ public class Character
 
     public virtual bool IsUsable()
     {
-        return _isAlive && !IsBlocked;
+        return _isAlive && !_isBlocked;
     }
 
     /// <summary>
@@ -138,9 +138,6 @@ public class Character
     }
 
 
-    /// <summary>
-    /// Base method to be overwritten by each character class.
-    /// </summary>
     public virtual void TakeAction()
     {
         PreAction();
@@ -148,6 +145,9 @@ public class Character
         PostAction();
     }
 
+    /// <summary>
+    /// Base method to be overwritten by each character class.
+    /// </summary>
     protected virtual void MainAction()
     {
         return;
