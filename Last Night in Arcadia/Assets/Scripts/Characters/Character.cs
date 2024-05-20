@@ -123,10 +123,9 @@ public class Character
 
     protected virtual void PreAction()
     {
-        if (Target is Marksman && ((Marksman)Target).Target != null && Target.IsUsable())
+        if (!(Target == this) && Target is Marksman && ((Marksman)Target).Target != null && Target.IsUsable())
         {
-            ((Marksman)Target).DoKill();
-            this.Kill(Target);
+            ((Marksman)Target).DoKill(this);
         }
     }
 

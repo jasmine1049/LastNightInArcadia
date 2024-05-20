@@ -19,12 +19,30 @@ public class Marksman : Character
         return base.IsUsable() && !deactivated;
     }
 
-    public void DoKill()
+    // Marksman must go dead last to ensure this check is done after all others may have interacted
+    protected override void MainAction()
     {
         uses--;
         if (uses <= 0)
         {
             deactivated = true;
+        }
+    }
+
+    public void DoKill(Character target)
+    {
+        if (target.IsHostile)
+        {
+            deactivated = true;
+            Reveal();
+            if (!(target is Overseer))
+            {
+                target.Kill(this);
+            }
+        }
+        else
+        {
+            target.Kill(this);
         }
     }
 }
