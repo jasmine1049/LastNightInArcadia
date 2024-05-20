@@ -60,22 +60,6 @@ public class Character
         return _isAlive;
     }
 
-
-    public void Kill()
-    {
-        if (_guard != null)
-        {
-            _isAlive = false;
-        }
-        else
-        {
-            _guard.Injure();
-            _guard = null;
-            // implement guard behavoir and call functionality here
-        }
-    }
-
-
     /// <summary>
     /// Sets the character's target.
     /// </summary>
@@ -109,16 +93,20 @@ public class Character
     /// <summary>
     /// Kills the character.
     /// </summary>
-    public void Kill(Character killer)
+    public bool Kill(Character killer)
     {
         if (_guard == null)
         {
             _isAlive = false;
             _isRoleRevealed = true;
             _killer = killer;
+            return true;
         }
         else
         {
+            _guard.Injure();
+            _guard = null;
+            return false;
             // implement guard behavoir and call functionality here
         }
     }
@@ -136,7 +124,7 @@ public class Character
     public virtual void TakeAction()
     {
         if (_target != null)
-            Debug.Log("character " + RoleName + " taking action on target " + Target._person.Name);
+            Debug.Log("character " + RoleName + " (" + _person.Name + ") taking action on target " + Target._person.Name);
         _target = null;
         _isBlocked = false;
     }

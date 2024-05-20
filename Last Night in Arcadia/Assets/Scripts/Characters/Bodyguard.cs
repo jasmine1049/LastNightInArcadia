@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bodyguard : Character
 {
     private int injuryClock;
     public Bodyguard(SOPerson person, SORole role, int index) : base(person, role, index)
     {
-        injuryClock = 5;
+        injuryClock = 0;
     }
 
     public override void TakeAction()
@@ -20,7 +21,10 @@ public class Bodyguard : Character
         {
             Target.SetGuard(this);
         }
-        injuryClock--;
+        if (GameManager.Instance.GetTimeOfDay() == DayTracker.TimesOfDay.Night)
+        {
+            injuryClock--;
+        }
         base.TakeAction();
     }
 

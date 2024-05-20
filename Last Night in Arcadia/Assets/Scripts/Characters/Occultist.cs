@@ -20,8 +20,7 @@ public class Occultist : Character
             }
             else if (_target != null)
             {
-                Target.Kill(this);
-                if (!Target.IsHostile)
+                if (!Target.IsHostile && Target.Kill(this))
                 {
                     Reveal();
                     this.Kill(this);

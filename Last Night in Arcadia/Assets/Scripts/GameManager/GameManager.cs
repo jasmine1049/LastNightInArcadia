@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         StartNewGame();
     }
 
+    public DayTracker.TimesOfDay GetTimeOfDay()
+    {
+        return GetComponent<DayTracker>().GetTimeOfDayEnum();
+    }
+
 
     /// <summary>
     /// Creates, randomizes, and initializes a new character's array.

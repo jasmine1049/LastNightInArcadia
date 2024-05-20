@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DayTracker : MonoBehaviour
 {
-    private enum TimesOfDay
+    public enum TimesOfDay
     {
         Evening,
         Night,
@@ -64,6 +64,16 @@ public class DayTracker : MonoBehaviour
     public string GetTimeOfDay()
     {
         return _currentTimeOfDay.ToString();
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public TimesOfDay GetTimeOfDayEnum()
+    {
+        return _currentTimeOfDay;
     }
 
 
