@@ -18,13 +18,9 @@ public class Madman : Character
     {
         DayTracker dayTracker = GameManager.Instance.GetComponent<DayTracker>();
 
-        if (_target == null && dayTracker.GetTimeOfDayEnum() == DayTracker.TimesOfDay.Evening)
+        if (_target == null && dayTracker.GetTimeOfDayEnum() == DayTracker.TimesOfDay.Evening && !_isBlocked)
         {
             CheckRandomKillChance();
-        }
-        else if (_target != null)
-        {
-            _target.Kill(this);
         }
         else if (_targeter is Executioner)
         {
@@ -64,6 +60,6 @@ public class Madman : Character
 
         GameManager.Instance.SetTarget(this, characters[randomIndex]);
 
-        MainAction();
+        _target.Kill(this);
     }
 }
