@@ -55,6 +55,11 @@ public class Character
         _isAlive = true;
     }
 
+    public virtual bool IsUsable()
+    {
+        return _isAlive;
+    }
+
 
     public void Kill()
     {
@@ -64,6 +69,8 @@ public class Character
         }
         else
         {
+            _guard.Injure();
+            _guard = null;
             // implement guard behavoir and call functionality here
         }
     }
@@ -76,6 +83,16 @@ public class Character
     public void SetTarget(Character target)
     {
         _target = target;
+    }
+
+
+    /// <summary>
+    /// Sets the character's guard.
+    /// </summary>
+    /// <param name="guard">Guard for this character, or null</param>
+    public void SetGuard(Bodyguard guard)
+    {
+        _guard = guard;
     }
 
 

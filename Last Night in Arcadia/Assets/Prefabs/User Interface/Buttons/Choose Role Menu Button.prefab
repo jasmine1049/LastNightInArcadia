@@ -461,3 +461,4 @@ MonoBehaviour:
   _targetCharacterPortrait: {fileID: 7459479613318868089}
   _colorWhenDead: {r: 0.5764706, g: 0, b: 0, a: 1}
   _colorWhenHasTarget: {r: 0, g: 0.64705884, b: 0.7529412, a: 1}
+  _colorWhenUnusable: {r: 0.5294118, g: 0.4431012, b: 0.24705882, a: 1}

@@ -17,7 +17,6 @@ public class Occultist : Character
             if (Target == this)
             {
                 Reveal();
-                return;
             }
             else if (_target != null)
             {
