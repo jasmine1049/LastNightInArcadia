@@ -111,7 +111,11 @@ public class GameManager : MonoBehaviour
     {
         _executioner.TakeAction();
 
-        foreach (Character character in GetCharacters(c => c.IsAlive))
+        // Sort by Role Index
+        Character[] characters = GetCharacters(c => c.IsAlive);
+        System.Array.Sort(characters, (c1, c2) => { return c1.RoleIndex.CompareTo(c2.RoleIndex); });
+
+        foreach (Character character in characters)
         {
             character.TakeAction();
         }
