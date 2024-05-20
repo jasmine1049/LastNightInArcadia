@@ -35,6 +35,7 @@ public class Bodyguard : Character
 
     public void Injure()
     {
+        Reveal();
         injuryClock = 2;
     }
 }
