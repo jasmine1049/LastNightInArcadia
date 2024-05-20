@@ -51,7 +51,7 @@ public class Madman : Character
 
     private void KillRandomCharacter()
     {
-        Character[] characters = GameManager.Instance.GetCharacters(character => character.IsAlive && character.Name != "Overseer" && character != this);
+        Character[] characters = GameManager.Instance.GetCharacters(character => character.IsAlive && character is not Overseer && character != this);
 
         // Is it possible for characters.Length to ever be 0? If so this would return an error, but surely that won't happen me thinks...
         int randomIndex = Random.Range(0, characters.Length);
