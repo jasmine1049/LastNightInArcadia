@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// Randomly shuffles an array using a Fisher–Yates shuffle.
+    /// Randomly shuffles an array using a Fisherï¿½Yates shuffle.
     /// </summary>
     /// <typeparam name="T">Array type.</typeparam>
     /// <param name="array">Array to be shuffled.</param>
