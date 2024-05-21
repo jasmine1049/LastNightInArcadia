@@ -171,4 +171,12 @@ public class Character
             moraleManager.DecreaseMorale(_role.MoraleLossOnDeath);
         }
     }
+
+
+    private void IncreaseMorale(int amount)
+    {
+        MoraleManager moraleManager = GameManager.Instance.GetComponent<MoraleManager>();
+
+        moraleManager.IncreaseMorale(amount);
+    }
 }
