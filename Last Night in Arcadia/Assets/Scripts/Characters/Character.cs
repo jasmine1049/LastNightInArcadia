@@ -55,19 +55,10 @@ public class Character
         _isAlive = true;
     }
 
-
-    public void Kill()
+    public virtual bool IsUsable()
     {
-        if (_guard != null)
-        {
-            _isAlive = false;
-        }
-        else
-        {
-            // implement guard behavoir and call functionality here
-        }
+        return _isAlive && !_isBlocked;
     }
-
 
     /// <summary>
     /// Sets the character's target.
@@ -76,6 +67,16 @@ public class Character
     public void SetTarget(Character target)
     {
         _target = target;
+    }
+
+
+    /// <summary>
+    /// Sets the character's guard.
+    /// </summary>
+    /// <param name="guard">Guard for this character, or null</param>
+    public void SetGuard(Bodyguard guard)
+    {
+        _guard = guard;
     }
 
 
@@ -89,35 +90,66 @@ public class Character
     }
 
 
-    public void ClearTarget()
-    {
-        _target = null;
-        _targeter = null;
-    }
-
-
     /// <summary>
     /// Kills the character.
     /// </summary>
-    public virtual void Kill(Character killer)
+    public bool Kill(Character killer)
     {
-        _isAlive = false;
-        _isRoleRevealed = true;
-        _killer = killer;
+        if (this is Marksman)
+        {
+            Debug.Log("I AM THE MARKSMAN " + RoleName);
+        }
+        if (_guard == null)
+        {
+            _isAlive = false;
+            _isRoleRevealed = true;
+            _killer = killer;
+            return true;
+        }
+        else
+        {
+            _guard.Injure();
+            _guard = null;
+            return false;
+            // implement guard behavoir and call functionality here
+        }
     }
+
 
     public void Reveal()
     {
-        IsRoleRevealed = true;
+        _isRoleRevealed = true;
     }
 
+    protected virtual void PreAction()
+    {
+        if (!(Target == this) && Target is Marksman && ((Marksman)Target).Target != null && Target.IsUsable())
+        {
+            ((Marksman)Target).DoKill(this);
+        }
+    }
+
+    protected virtual void PostAction()
+    {
+        if (_target != null)
+            Debug.Log("character " + RoleName + " (" + _person.Name + ") taking action on target " + Target._person.Name);
+        _target = null;
+        _isBlocked = false;
+    }
+
+
+    public virtual void TakeAction()
+    {
+        PreAction();
+        MainAction();
+        PostAction();
+    }
 
     /// <summary>
     /// Base method to be overwritten by each character class.
     /// </summary>
-    public virtual void TakeAction()
+    protected virtual void MainAction()
     {
-        Target = null;
-        IsBlocked = false;
+        return;
     }
 }

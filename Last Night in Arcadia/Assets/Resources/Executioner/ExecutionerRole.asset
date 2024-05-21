@@ -18,3 +18,4 @@ MonoBehaviour:
   _alignment: 0
   _moralLossOnDeath: 0
   _moralLossOnExecution: 0
+  _title: ExecutionerRole

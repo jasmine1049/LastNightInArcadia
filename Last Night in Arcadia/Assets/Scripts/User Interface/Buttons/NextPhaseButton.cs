@@ -13,26 +13,17 @@ public class NextPhaseButton : MonoBehaviour
         Button button = GetComponent<Button>();
 
         button.onClick.AddListener(ProgressTime);
-        button.onClick.AddListener(TakeActions);
         button.onClick.AddListener(LoadNextScene);
     }
 
 
     /// <summary>
-    /// Calls ProgressTime() from the Day Tracker.
+    /// Calls TakeActions() from the Game Manager then ProgressTime() from the Day Tracker.
     /// </summary>
     private void ProgressTime()
     {
-        GameManager.Instance.GetComponent<DayTracker>().ProgressTime();
-    }
-
-
-    /// <summary>
-    /// Calls TakeActions() from the game manager.
-    /// </summary>
-    private void TakeActions()
-    {
         GameManager.Instance.TakeActions();
+        GameManager.Instance.GetComponent<DayTracker>().ProgressTime();
     }
 
 

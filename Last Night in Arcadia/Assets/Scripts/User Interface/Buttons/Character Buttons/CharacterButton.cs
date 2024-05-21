@@ -19,7 +19,7 @@ public abstract class CharacterButton : MonoBehaviour
     public virtual Character Character { get { return GameManager.Instance.GetCharacter(_index); } private set { } }
 
 
-    void Start()
+    void Awake()
     {
         _button = GetComponentInChildren<Button>();
         Debug.Assert(_button != null,
@@ -29,7 +29,7 @@ public abstract class CharacterButton : MonoBehaviour
     }
 
 
-    public void Initialize(Character character, GameObject objectToDeactivateOnClick, GameObject objectToActivateOnClick)
+    public virtual void Initialize(Character character, GameObject objectToDeactivateOnClick, GameObject objectToActivateOnClick)
     {
         _index = character.Index;
 

@@ -25,9 +25,10 @@ public class SORole : ScriptableObject
     [SerializeField] private RoleAlignment _alignment;
     [SerializeField] private int _moralLossOnDeath;
     [SerializeField] private int _moralLossOnExecution;
+    [SerializeField] private string _title;
 
 
-    public string Name { get { return this.name; } private set { } }
+    public string Name { get { return _title; } private set { } }
     public string Description { get { return _description; } private set { } }
     public Sprite Icon { get { return _icon; } private set { } }
 

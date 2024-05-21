@@ -82,8 +82,8 @@ public class ChooseTargetMenuButton : CharacterButton
         {
             if (base._isSelected)
             {
-                base._button.GetComponent<Image>().color = _colorWhenTargeted;
-                base._button.enabled = false;
+                //base._button.GetComponent<Image>().color = _colorWhenTargeted;
+                //base._button.enabled = false;
             }
         }
         else

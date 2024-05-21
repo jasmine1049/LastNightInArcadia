@@ -9,25 +9,22 @@ public class Occultist : Character
 
     }
 
-    public override void TakeAction()
+    protected override void MainAction()
     {
-        if (IsAlive && !IsBlocked)
+        if (IsUsable())
         {
             if (Target == this)
             {
                 Reveal();
-                return;
             }
-            else
+            else if (_target != null)
             {
-                Target.Kill();
-                if (!Target.IsHostile)
+                if (!Target.IsHostile && Target.Kill(this))
                 {
                     Reveal();
-                    this.Kill();
+                    this.Kill(this);
                 }
             }
         }
-        base.TakeAction();
     }
 }

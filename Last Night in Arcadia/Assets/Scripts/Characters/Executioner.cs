@@ -10,8 +10,16 @@ public class Executioner : Character
     }
 
 
-    public override void TakeAction()
+    protected override void MainAction()
     {
-        _target.Kill(this);
+        if (_target != null)
+        {
+            if (_target is Madman)
+            {
+                _target.TakeAction();
+            }
+
+            _target.Kill(this);
+        }
     }
 }

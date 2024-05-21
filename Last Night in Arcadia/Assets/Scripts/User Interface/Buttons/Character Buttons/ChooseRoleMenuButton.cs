@@ -14,6 +14,7 @@ public class ChooseRoleMenuButton : CharacterButton
     [Header("Button Color(s)")]
     [SerializeField] private Color _colorWhenDead;
     [SerializeField] private Color _colorWhenHasTarget;
+    [SerializeField] private Color _colorWhenUnusable;
 
 
     public void SetTargetCharacterPortrait(Sprite portrait)
@@ -44,7 +45,12 @@ public class ChooseRoleMenuButton : CharacterButton
     {
         if (base.Character.IsAlive)
         {
-            if (base._isSelected)
+            if (!base.Character.IsUsable())
+            {
+                base._button.GetComponent<Image>().color = _colorWhenUnusable;
+                base._button.enabled = false;
+            }
+            else if (base._isSelected)
             {
                 base._button.GetComponent<Image>().color = _colorWhenHasTarget;
                 base._button.enabled = false;

@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         StartNewGame();
     }
 
+    public DayTracker.TimesOfDay GetTimeOfDay()
+    {
+        return GetComponent<DayTracker>().GetTimeOfDayEnum();
+    }
+
 
     /// <summary>
     /// Creates, randomizes, and initializes a new character's array.
@@ -109,12 +114,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void TakeActions()
     {
-        foreach (Character character in _characters)
+        _executioner.TakeAction();
+
+        // Sort by Role Index
+        Character[] characters = GetCharacters(c => c.IsAlive);
+        System.Array.Sort(characters, (c1, c2) => { return c1.RoleIndex.CompareTo(c2.RoleIndex); });
+
+        foreach (Character character in characters)
         {
-            if (character.IsAlive)
-            {
-                character.TakeAction();
-            }
+            character.TakeAction();
         }
     }
 
@@ -178,7 +186,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// Randomly shuffles an array using a Fisher–Yates shuffle.
+    /// Randomly shuffles an array using a Fisherï¿½Yates shuffle.
     /// </summary>
     /// <typeparam name="T">Array type.</typeparam>
     /// <param name="array">Array to be shuffled.</param>

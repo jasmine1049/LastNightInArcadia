@@ -9,8 +9,11 @@ using UnityEngine.UI;
 public class ExecutionMenu : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private TextMeshProUGUI _menuTitle;
-    [SerializeField] private Image _executionTarget;
+    [SerializeField] private TextMeshProUGUI _executionStatus;
+    [SerializeField] private Image _executionTargetImage;
+    [SerializeField] private GameObject _clickToContinueText;
 
+    private Character _executionTarget;
     private bool _isExecutionConfirmed;
 
 
@@ -27,31 +30,43 @@ public class ExecutionMenu : MonoBehaviour, IPointerClickHandler
     public void ConfirmExecution()
     {
         _isExecutionConfirmed = true;
+        _clickToContinueText.SetActive(true);
+        UpdateUI();
     }
 
 
     private void OnEnable()
     {
-        Actions.OnChooseTargetMenuButtonClicked += SetTitleText;
-        Actions.OnChooseTargetMenuButtonClicked += SetExecutionTargetImage;
+        Actions.OnChooseTargetMenuButtonClicked += SetChooseTargetMenuButton;
     }
 
 
     private void OnDisable()
     {
-        Actions.OnChooseTargetMenuButtonClicked -= SetTitleText;
-        Actions.OnChooseTargetMenuButtonClicked -= SetExecutionTargetImage;
+        Actions.OnChooseTargetMenuButtonClicked -= SetChooseTargetMenuButton;
     }
 
 
-    private void SetTitleText(ChooseTargetMenuButton chooseTargetMenuButton)
+    private void SetChooseTargetMenuButton(ChooseTargetMenuButton chooseTargetMenuButton)
     {
-        _menuTitle.text = String.Format("Execute {0}", chooseTargetMenuButton.Character.Name);
+        _executionTarget = chooseTargetMenuButton.Character;
+
+        UpdateUI();
     }
 
 
-    private void SetExecutionTargetImage(ChooseTargetMenuButton chooseTargetMenuButton)
+    private void UpdateUI()
     {
-        _executionTarget.sprite = chooseTargetMenuButton.Character.Portrait;
+        _menuTitle.text = String.Format("Execute {0}", _executionTarget.Name);
+
+        if (_isExecutionConfirmed)
+        {
+            _executionStatus.text = String.Format("You have executed {0}!\n{1} was {2}.", _executionTarget.Name, _executionTarget.Name, _executionTarget.RoleName);
+        }
+        else
+        {
+            _executionStatus.text = String.Format("You have chosen to execute {0}.\nAre you sure?", _executionTarget.Name);
+            _executionTargetImage.sprite = _executionTarget.Portrait;
+        }
     }
 }
