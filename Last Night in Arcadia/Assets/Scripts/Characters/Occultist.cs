@@ -19,6 +19,7 @@ public class Occultist : Character
             }
             else if (_target != null)
             {
+                Debug.Log("OCCULTIST KILLING");
                 if (!Target.IsHostile && Target.Kill(this))
                 {
                     Reveal();

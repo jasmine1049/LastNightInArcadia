@@ -101,6 +101,7 @@ public class Character
         }
         if (_guard == null)
         {
+            Debug.Log("KILLING ME " + Name);
             _isAlive = false;
             _isRoleRevealed = true;
             _killer = killer;
