@@ -105,6 +105,9 @@ public class Character
             _isAlive = false;
             _isRoleRevealed = true;
             _killer = killer;
+
+            DecreaseMorale();
+
             return true;
         }
         else
@@ -152,5 +155,20 @@ public class Character
     protected virtual void MainAction()
     {
         return;
+    }
+
+
+    private void DecreaseMorale()
+    {
+        MoraleManager moraleManager = GameManager.Instance.GetComponent<MoraleManager>();
+
+        if (_killer is Executioner)
+        {
+            moraleManager.DecreaseMorale(_role.MoraleLossOnExecution);
+        }
+        else
+        {
+            moraleManager.DecreaseMorale(_role.MoraleLossOnDeath);
+        }
     }
 }
