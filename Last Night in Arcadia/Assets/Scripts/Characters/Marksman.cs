@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Marksman : Character
@@ -22,7 +23,10 @@ public class Marksman : Character
     // Marksman must go dead last to ensure this check is done after all others may have interacted
     protected override void MainAction()
     {
-        uses--;
+        if (Target != null)
+        {
+            uses--;
+        }
         if (uses <= 0)
         {
             deactivated = true;
