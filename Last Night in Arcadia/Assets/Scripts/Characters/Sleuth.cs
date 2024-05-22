@@ -10,6 +10,8 @@ public class Sleuth : Character
     }
 
 
+    // Currently it just debug logs it, but it the future I imagine we will just take the same
+    // string, and send it to the in-game daily log system
     protected override void MainAction()
     {
         if (IsUsable())
@@ -17,7 +19,7 @@ public class Sleuth : Character
             if (Target == this)
             {
                 Reveal();
-                Debug.Log("The Sleuth sleuthed themself");
+                Debug.Log("The Sleuth sleuthed themself.");
             }
             else if (Target != null)
             {
