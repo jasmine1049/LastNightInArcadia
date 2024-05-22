@@ -173,7 +173,7 @@ public class Character
     }
 
 
-    private void IncreaseMorale(int amount)
+    protected void IncreaseMorale(int amount)
     {
         MoraleManager moraleManager = GameManager.Instance.GetComponent<MoraleManager>();
 
