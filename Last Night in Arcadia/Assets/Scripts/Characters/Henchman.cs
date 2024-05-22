@@ -11,32 +11,25 @@ public class Henchman : Character
 
     }
 
-
-    /*public override void TakeAction()
-    {
-        
-    }*/
-
-    protected override void PostAction()
+    protected override void MainAction()
     {
         if (IsUsable())
         {
             Character[] chars = GameManager.Instance.GetCharacters();
-            //Character[] targets = GameManager.Instance.GetCharacters(!IsHostile && IsAlive);
             System.Random random = new System.Random();
             int char_num = chars.Length;
             int index = random.Next(0, char_num - 1);
             Character target = chars[index];
 
+            // choose target randomly
             while (target.IsHostile || !target.IsAlive) {
                 index = random.Next(0, char_num - 1);
                 target = chars[index];
             }
 
-            //GameManager.Instance.Shuffle<Character>(targets);
-            //Character target = chars[0];
+            // kill function
             DayTracker thing = GameManager.Instance.GetComponent<DayTracker>();
-            if (target != null && (String.Equals(thing.GetTimeOfDay(), "Evening"/*DayTracker.TimesOfDay.Evening*/))) {
+            if (target != null && (String.Equals(thing.GetTimeOfDay(), "Night"))) {
                 target.Kill(this);
             } else {
                 ;
