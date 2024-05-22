@@ -19,6 +19,7 @@ public class DayTracker : MonoBehaviour
     [SerializeField] private int _startingYear;
 
     private DateTime _currentDate;
+    private int _currentDaysFromZero;
     private TimesOfDay _currentTimeOfDay;
 
 
@@ -28,6 +29,7 @@ public class DayTracker : MonoBehaviour
     /// </summary>
     void Awake()
     {
+        _currentDaysFromZero = 0;
         _currentDate = new DateTime(_startingYear, _startingMonth, _startingDay);
         _currentTimeOfDay = TimesOfDay.Evening;
     }
@@ -87,12 +89,29 @@ public class DayTracker : MonoBehaviour
         return (_currentDate.Day, _currentDate.ToString("MMMM"), _currentDate.Year);
     }
 
+    public string GetDateString()
+    {
+        return _currentDate.ToString("d");
+    }
+
+    public (int Day, string MonthName, int Year) GetDate(int daysFromZero)
+    {
+        DateTime adjustedDays = (new DateTime(_startingYear, _startingMonth, _startingDay)).AddDays(daysFromZero);
+        return (adjustedDays.Day, adjustedDays.ToString("MMMM"), adjustedDays.Year);
+    }
+
+    public int GetDaysFromZero()
+    {
+        return _currentDaysFromZero;
+    }
+
 
     /// <summary>
     /// Advances the date by one day.
     /// </summary>
     private void AdvanceOneDay()
     {
+        _currentDaysFromZero++;
         _currentDate = _currentDate.AddDays(1);
     }
 

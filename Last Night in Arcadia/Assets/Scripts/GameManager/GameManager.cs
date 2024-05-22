@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private const int EXECUTIONER_INDEX = -1;
 
     private static GameManager _instance;
+    public static ReportsManager ReportManager;
     private Character[] _characters;
     private Executioner _executioner;
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+            ReportManager = new ReportsManager();
             DontDestroyOnLoad(this.gameObject);
         }
 
@@ -213,5 +215,15 @@ public class GameManager : MonoBehaviour
                 String.Format("{0} is not a valid type. Check spelling of scriptable object and associated script.", executionerRole.Name));
 
         _executioner = (Executioner)Activator.CreateInstance(type, executionerPerson, executionerRole, EXECUTIONER_INDEX);
+    }
+
+    public int GetDaysFromZero()
+    {
+        return GetComponent<DayTracker>().GetDaysFromZero();
+    }
+
+    public DayTracker GetDayTracker()
+    {
+        return GetComponent<DayTracker>();
     }
 }

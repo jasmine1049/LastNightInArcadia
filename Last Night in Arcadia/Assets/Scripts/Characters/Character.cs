@@ -89,6 +89,38 @@ public class Character
         _targeter = targeter;
     }
 
+    private string GetMurderText(Character killer)
+    {
+        string nameAndRole = $"{this.Name}, the {this.RoleName} ";
+        if (killer == this)
+        {
+            if (UnityEngine.Random.Range(0, 1) == 0)
+            {
+                return nameAndRole + "killed themself.";
+            }
+            else
+            {
+                return nameAndRole + "committed suicide.";
+            }
+        }
+        else
+        {
+            int r = UnityEngine.Random.Range(0, 2);
+            if (r == 0)
+            {
+                return nameAndRole + $"was murdered by the {killer.RoleName}.";
+            }
+            else if (r == 1)
+            {
+                return nameAndRole + $"died at the hands of the {killer.RoleName}.";
+            }
+            else
+            {
+                return nameAndRole + $"had their life ended by the {killer.RoleName}.";
+            }
+        }
+    }
+
 
     /// <summary>
     /// Kills the character.
@@ -101,6 +133,11 @@ public class Character
         }
         if (_guard == null)
         {
+            GameManager.ReportManager.AddItem(
+                GameManager.Instance.GetDaysFromZero(), 
+                GameManager.Instance.GetTimeOfDay(),
+                GetMurderText(killer)
+                );
             Debug.Log("KILLING ME " + Name);
             _isAlive = false;
             _isRoleRevealed = true;
