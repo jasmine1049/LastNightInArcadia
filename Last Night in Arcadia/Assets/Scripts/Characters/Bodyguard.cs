@@ -37,6 +37,11 @@ public class Bodyguard : Character
 
     public void Injure()
     {
+        GameManager.ReportManager.AddItem(
+                GameManager.Instance.GetDaysFromZero(),
+                GameManager.Instance.GetTimeOfDay(),
+                $"The bodyguard, {Name}, was injured while protecting {Target.Name}."
+                );
         Reveal();
         injuryClock = 2;
     }

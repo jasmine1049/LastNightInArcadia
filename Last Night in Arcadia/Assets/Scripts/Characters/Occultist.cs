@@ -15,6 +15,11 @@ public class Occultist : Character
         {
             if (Target == this)
             {
+                GameManager.ReportManager.AddItem(
+                GameManager.Instance.GetDaysFromZero(),
+                GameManager.Instance.GetTimeOfDay(),
+                $"The occultist, {Name}, was assigned to visit themself."
+                );
                 Reveal();
             }
             else if (_target != null)
