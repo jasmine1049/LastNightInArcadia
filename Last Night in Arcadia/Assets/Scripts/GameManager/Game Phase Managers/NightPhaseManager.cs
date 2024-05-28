@@ -50,17 +50,31 @@ public class NightPhaseManager : MonoBehaviour
 
         chooseTargetMenuButton.UpdateUI();
 
+        _numTargetsChosen++;
+
         CheckMaxNumberTargets();
     }
 
 
     private void CheckMaxNumberTargets()
     {
-        _numTargetsChosen++;
-        if (_numTargetsChosen >= _maxNumberTargets)
+        if (_numTargetsChosen >= GetMaxNumberTargets())
         {
             DisableRoleButtons();
         }
+    }
+
+
+    private int GetMaxNumberTargets()
+    {
+        Sacrifice sacrifice = (Sacrifice)(GameManager.Instance.GetCharacters(c => c is Sacrifice)[0]);
+
+        if (sacrifice.IsBoonActive())
+        {
+            return _maxNumberTargets + sacrifice.NumberExtraCommandsOnDeath;
+        }
+
+        return _maxNumberTargets;
     }
 
 

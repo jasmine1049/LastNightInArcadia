@@ -14,7 +14,9 @@ public class Executioner : Character
     {
         if (_target != null)
         {
-            if (_target is Madman)
+            bool targetIsMadmanOrSacrifice = (_target is Madman) || (_target is Sacrifice);
+
+            if (targetIsMadmanOrSacrifice)
             {
                 _target.TakeAction();
             }
