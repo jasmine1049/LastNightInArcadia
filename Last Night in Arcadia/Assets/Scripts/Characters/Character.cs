@@ -125,6 +125,7 @@ public class Character
         _isRoleRevealed = true;
     }
 
+
     protected virtual void PreAction()
     {
         if (!(Target == this) && Target is Marksman && ((Marksman)Target).Target != null && Target.IsUsable())
@@ -148,6 +149,7 @@ public class Character
         MainAction();
         PostAction();
     }
+
 
     /// <summary>
     /// Base method to be overwritten by each character class.
