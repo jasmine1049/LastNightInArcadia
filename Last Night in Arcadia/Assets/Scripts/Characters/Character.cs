@@ -101,6 +101,15 @@ public class Character
         }
         if (_guard == null)
         {
+            // Sacrifice will save character from 
+            Sacrifice sacrifice = (Sacrifice)(GameManager.Instance.GetCharacters(c => c is Sacrifice)[0]);
+            if (sacrifice.IsBoonActive() && sacrifice.CanSaveCharacter())
+            {
+                sacrifice.SaveCharacter();
+                Debug.Log("Sacrifice saved " + Name);
+                return false;
+            }
+
             Debug.Log("KILLING ME " + Name);
             _isAlive = false;
             _isRoleRevealed = true;

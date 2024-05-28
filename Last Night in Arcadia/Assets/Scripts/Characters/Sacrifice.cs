@@ -9,6 +9,7 @@ public class Sacrifice : Character
     private int _numberVictimsToProtect;
 
     private int _dayOfExecution;
+    private int _numberCharactersSaved;
 
 
     public int NumberDaysBoonLasts { get { return _numberDaysBoonLasts; } private set { } }
@@ -38,9 +39,23 @@ public class Sacrifice : Character
     {
         int numberDaysPassed = GameManager.Instance.GetComponent<DayTracker>().NumberOfDaysPassed;
 
-        bool isKillerExecutioner = _killer is Executioner;
+        // Technically we don't need to check if killer is Executioner? Cause _dayOfExecution will always be 0
+        // as long as the Sacrifice is not targeted (and therefore killed) by the Executioner
+        bool isKillerExecutioner = base._killer is Executioner;
         bool withinExecutionTimeFrame = (numberDaysPassed - _dayOfExecution) < _numberDaysBoonLasts;
 
         return isKillerExecutioner && withinExecutionTimeFrame;
+    }
+
+
+    public bool CanSaveCharacter()
+    {
+        return _numberCharactersSaved < _numberVictimsToProtect;
+    }
+
+
+    public void SaveCharacter()
+    {
+        _numberCharactersSaved++;
     }
 }

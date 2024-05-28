@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// Calls each character's TakeAction method.
+    /// Calls each character's TakeAction method if they're alive.
     /// </summary>
     public void TakeActions()
     {
