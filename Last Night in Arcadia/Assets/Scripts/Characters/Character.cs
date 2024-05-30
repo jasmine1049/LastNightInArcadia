@@ -133,11 +133,22 @@ public class Character
         }
         if (_guard == null)
         {
+            
+            // Sacrifice will save character from 
+            Sacrifice sacrifice = (Sacrifice)(GameManager.Instance.GetCharacters(c => c is Sacrifice)[0]);
+            if (sacrifice.IsBoonActive() && sacrifice.CanSaveCharacter())
+            {
+                sacrifice.SaveCharacter();
+                Debug.Log("Sacrifice saved " + Name);
+                return false;
+            }
+            
             GameManager.ReportManager.AddItem(
                 GameManager.Instance.GetDaysFromZero(), 
                 GameManager.Instance.GetTimeOfDay(),
                 GetMurderText(killer)
                 );
+
             Debug.Log("KILLING ME " + Name);
             _isAlive = false;
             _isRoleRevealed = true;
@@ -162,6 +173,7 @@ public class Character
         _isRoleRevealed = true;
     }
 
+
     protected virtual void PreAction()
     {
         if (!(Target == this) && Target is Marksman && ((Marksman)Target).Target != null && Target.IsUsable())
@@ -185,6 +197,7 @@ public class Character
         MainAction();
         PostAction();
     }
+
 
     /// <summary>
     /// Base method to be overwritten by each character class.

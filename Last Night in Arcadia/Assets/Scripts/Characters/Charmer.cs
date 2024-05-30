@@ -17,7 +17,7 @@ public class Charmer : Character
     {
         DayTracker dayTracker = GameManager.Instance.GetComponent<DayTracker>();
 
-        if (_target == null && dayTracker.GetTimeOfDayEnum() == DayTracker.TimesOfDay.Evening)
+        if (_target == null && dayTracker.GetTimeOfDayEnum() == DayTracker.TimesOfDay.Evening && !_isBlocked)
         {
             VisitRandomInactive();
         }
@@ -28,11 +28,13 @@ public class Charmer : Character
     {
         Character[] characters = GameManager.Instance.GetCharacters(c => c.IsAlive && c.Target == null && c.Targeter == null && c != this);
 
+        // There's random inactives to "visit"
         if (characters.Length > 0)
         {
-            int randomIndex = Random.Range(0, characters.Length);
+            // I don't think we need to check if a random person in the list is killed or not roleblocked?
+            // int randomIndex = Random.Range(0, characters.Length);
 
-            characters[randomIndex].IncreaseMorale(_moraleIncreaseOnSuccessfulVisit);
+            IncreaseMorale(_moraleIncreaseOnSuccessfulVisit);
         }
     }
 }

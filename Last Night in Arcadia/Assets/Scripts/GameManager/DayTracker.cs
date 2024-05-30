@@ -21,6 +21,10 @@ public class DayTracker : MonoBehaviour
     private DateTime _currentDate;
     private int _currentDaysFromZero;
     private TimesOfDay _currentTimeOfDay;
+    private int _numberOfDaysPassed;
+
+
+    public int NumberOfDaysPassed {  get { return _numberOfDaysPassed; } private set { } }
 
 
     /// <summary>
@@ -32,6 +36,7 @@ public class DayTracker : MonoBehaviour
         _currentDaysFromZero = 0;
         _currentDate = new DateTime(_startingYear, _startingMonth, _startingDay);
         _currentTimeOfDay = TimesOfDay.Evening;
+        _numberOfDaysPassed = 0;
     }
 
 
@@ -113,6 +118,7 @@ public class DayTracker : MonoBehaviour
     {
         _currentDaysFromZero++;
         _currentDate = _currentDate.AddDays(1);
+        _numberOfDaysPassed++;
     }
 
 
