@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static ReportsManager ReportManager;
     private Character[] _characters;
     private Executioner _executioner;
+    private List<Character> _nightPhaseDeaths;
 
 
     public static GameManager Instance { get { return _instance; } private set { } }
@@ -36,7 +37,11 @@ public class GameManager : MonoBehaviour
         }
 
         StartNewGame();
+
+        // This should probably go into StartNewGame me thinks. - Diego (5/29/24)
+        _nightPhaseDeaths = new List<Character>();
     }
+
 
     public DayTracker.TimesOfDay GetTimeOfDay()
     {
@@ -150,6 +155,36 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
+    /// Returns an array of characters that have died during the current night phase.
+    /// </summary>
+    /// <returns></returns>
+    public Character[] GetNightPhaseDeaths()
+    {
+        return _nightPhaseDeaths.ToArray();
+    }
+
+
+    /// <summary>
+    /// Adds a new character whose died to the night phase deaths array.
+    /// </summary>
+    public void AddNightPhaseDeath(Character character)
+    {
+        _nightPhaseDeaths.Add(character);
+    }
+
+
+    /// <summary>
+    /// Clears the night phase deaths array.
+    /// </summary>
+    public void ClearNightPhaseDeaths()
+    {
+        Debug.Log("cleared deaths");
+        _nightPhaseDeaths.Clear();
+    }
+
+
+
+    /// <summary>
     /// Returns an array of all the assets from a specified folder in the Resource folder.
     /// </summary>
     /// <typeparam name="T">Asset type.</typeparam>
@@ -205,6 +240,9 @@ public class GameManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Creates the executioner.
+    /// </summary>
     private void CreateExecutioner()
     {
         SOPerson executionerPerson = Resources.Load<SOPerson>("Executioner/ExecutionerPerson");

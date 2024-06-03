@@ -55,10 +55,12 @@ public class Character
         _isAlive = true;
     }
 
+
     public virtual bool IsUsable()
     {
         return _isAlive && !_isBlocked;
     }
+
 
     /// <summary>
     /// Sets the character's target.
@@ -88,6 +90,7 @@ public class Character
     {
         _targeter = targeter;
     }
+
 
     private string GetMurderText(Character killer)
     {
@@ -133,8 +136,7 @@ public class Character
         }
         if (_guard == null)
         {
-            
-            // Sacrifice will save character from 
+            // Sacrifice will save character from death
             Sacrifice sacrifice = (Sacrifice)(GameManager.Instance.GetCharacters(c => c is Sacrifice)[0]);
             if (sacrifice.IsBoonActive() && sacrifice.CanSaveCharacter())
             {
@@ -155,6 +157,12 @@ public class Character
             _killer = killer;
 
             DecreaseMorale();
+
+            // If died during night phase, add it to night phase deaths.
+            if (GameManager.Instance.GetTimeOfDay() == DayTracker.TimesOfDay.Evening)
+            {
+                GameManager.Instance.AddNightPhaseDeath(this);
+            }
 
             return true;
         }

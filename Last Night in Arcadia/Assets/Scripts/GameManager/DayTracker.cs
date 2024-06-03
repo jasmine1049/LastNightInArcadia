@@ -49,13 +49,15 @@ public class DayTracker : MonoBehaviour
 
         if (_currentTimeOfDay == TimesOfDay.Afternoon)
         {
+            GameManager.Instance.ClearNightPhaseDeaths(); // Each new day the Night Phase Deaths array is reset.
+
             AdvanceOneDay();
         }
     }
 
 
     /// <summary>
-    /// 
+    /// Returns the day of the week (Monday, Tuesday, etc) as a string.
     /// </summary>
     /// <returns></returns>
     public string GetDayOfTheWeek()
@@ -65,7 +67,7 @@ public class DayTracker : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// Returns the time of the day (Evening, Night, Afternoon) as a string.
     /// </summary>
     /// <returns></returns>
     public string GetTimeOfDay()
@@ -75,7 +77,7 @@ public class DayTracker : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// Returns the time of the day as an enum.
     /// </summary>
     /// <returns></returns>
     public TimesOfDay GetTimeOfDayEnum()
@@ -85,7 +87,7 @@ public class DayTracker : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// Returns a tuple of the current day in the format (29, May, 2024)
     /// </summary>
     /// <returns></returns>
     public (int Day, string MonthName, int Year) GetDate()
