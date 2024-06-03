@@ -28,11 +28,11 @@ public class Character
     public Character Killer { get { return _killer; } private set { } }
 
     // Public getters from Person
-    public string Name { get { return _person.Name; } private set { } }
+    public virtual string Name { get { return _person.Name; } private set { } }
     public Sprite Portrait { get { return _person.Portrait; } private set { } }
 
     // Public getters from Role
-    public string RoleName { get { return _role.Name; } private set { } }
+    public virtual string RoleName { get { return _role.Name; } private set { } }
     public string RoleDescription { get { return _role.Description; } private set { } }
     public Sprite RoleIcon { get { return _role.Icon; } private set { } }
     public int RoleIndex { get { return _role.Index; } private set { } }

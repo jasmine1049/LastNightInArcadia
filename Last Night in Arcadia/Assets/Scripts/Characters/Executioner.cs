@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Executioner : Character
 {
+    public override string Name { get { return "Execution"; }
+    public override string RoleName { get { return "Execution"; }
+    }
+
     public Executioner(SOPerson person, SORole role, int index) : base(person, role, index)
     {
 
