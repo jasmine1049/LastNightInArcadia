@@ -35,7 +35,10 @@ public class ChooseRoleMenuButton : CharacterButton
     public override void UpdateUI()
     {
         _roleName.text = base.Character.RoleName;
-        _roleIcon.sprite = base.Character.RoleIcon;
+        if (_roleIcon != null && base.Character.RoleIcon != null)
+        {
+            _roleIcon.sprite = base.Character.RoleIcon;
+        }
 
         SetButtonColor();
     }

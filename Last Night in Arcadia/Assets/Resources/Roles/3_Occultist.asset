@@ -17,7 +17,7 @@ MonoBehaviour:
     with (killed or roleblocked). Successfully killing a hostile suspect increases
     morale more than normal. If they kill a non-hostile suspect, they will take their
     own life by dawn.
-  _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
+  _icon: {fileID: 21300000, guid: 4b71b7cfd28aa584aa09c48eaa4066a1, type: 3}
   _index: 3
   _alignment: 1
   _moralLossOnDeath: 5

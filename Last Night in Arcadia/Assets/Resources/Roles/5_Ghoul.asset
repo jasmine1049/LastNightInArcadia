@@ -17,7 +17,7 @@ MonoBehaviour:
     suspects (any alignment) when hungry. Cannot kill overseer. If overseer is target,
     they will fight, but neither will die. Roleblocks both for the night. They will
     avoid each other from then on after learning each other\u2019s identities."
-  _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
+  _icon: {fileID: 21300000, guid: 4b71b7cfd28aa584aa09c48eaa4066a1, type: 3}
   _index: 5
   _alignment: 2
   _moralLossOnDeath: 0

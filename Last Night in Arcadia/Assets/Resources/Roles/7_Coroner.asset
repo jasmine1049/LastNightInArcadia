@@ -19,7 +19,7 @@ MonoBehaviour:
     except for Overseer. Comes at the cost of reducing morale by 15. Passive chance
     of being chosen as a victim while using ability decreases proportionally to the
     number of dead suspects.
-  _icon: {fileID: 21300000, guid: f34d5a53d9261454eb40b4d30d161eba, type: 3}
+  _icon: {fileID: 21300000, guid: 4b71b7cfd28aa584aa09c48eaa4066a1, type: 3}
   _index: 7
   _alignment: 1
   _moralLossOnDeath: 5
