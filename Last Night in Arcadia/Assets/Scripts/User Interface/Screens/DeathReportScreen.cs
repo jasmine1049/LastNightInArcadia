@@ -58,8 +58,6 @@ public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
         // 
         // From there probably jsut a bunch of FormatText type functinos for each TextMeshProUGUI thingy
         Character character = _nightPhaseDeaths[_numberDeathsReported];
-        Debug.Log(character);
-        Debug.Log("is dead :((");
     }
 
 
