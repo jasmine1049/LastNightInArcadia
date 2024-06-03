@@ -45,7 +45,8 @@ public class Overseer : Character
 
             // kill function
             DayTracker thing = GameManager.Instance.GetComponent<DayTracker>();
-            if (target != null && (String.Equals(thing.GetTimeOfDay(), "Night"))) {
+            // Yes it makes sense for it to be "Night" since it's the night phase. But the day tracker is weird, just trust that it's supposed to be "Evening" sob
+            if (target != null && (String.Equals(thing.GetTimeOfDay(), "Evening"))) {
                 target.Kill(this);
             } else {
                 ;
