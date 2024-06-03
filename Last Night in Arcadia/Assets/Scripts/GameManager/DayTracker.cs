@@ -49,8 +49,6 @@ public class DayTracker : MonoBehaviour
 
         if (_currentTimeOfDay == TimesOfDay.Afternoon)
         {
-            GameManager.Instance.ClearNightPhaseDeaths(); // Each new day the Night Phase Deaths array is reset.
-
             AdvanceOneDay();
         }
     }
@@ -139,6 +137,7 @@ public class DayTracker : MonoBehaviour
                 break;
             case TimesOfDay.Afternoon:
                 _currentTimeOfDay = TimesOfDay.Evening;
+                GameManager.Instance.ClearNightPhaseDeaths(); // Each new night the Night Phase Deaths array is reset.
                 break;
         }
     }
