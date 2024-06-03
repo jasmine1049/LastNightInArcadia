@@ -23,6 +23,7 @@ public class ExecutionMenu : MonoBehaviour, IPointerClickHandler
         {
             GameManager.Instance.GetComponent<SceneController>().LoadNextScene();
             GameManager.Instance.TakeActions();
+            GameManager.Instance.GetComponent<DayTracker>().ProgressTime();
         }
     }
 
