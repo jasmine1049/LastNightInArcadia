@@ -1978,6 +1978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextUIPage: {fileID: 1896057349}
+  _characterPortrait: {fileID: 623199283}
 --- !u!1 &1870035454
 GameObject:
   m_ObjectHideFlags: 0

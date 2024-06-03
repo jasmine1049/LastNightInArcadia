@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameObject _nextUIPage;
+    [SerializeField] private Image _characterPortrait;
 
     private Character[] _nightPhaseDeaths;
     private int _numberDeathsReported;
@@ -58,6 +60,7 @@ public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
         // 
         // From there probably jsut a bunch of FormatText type functinos for each TextMeshProUGUI thingy
         Character character = _nightPhaseDeaths[_numberDeathsReported];
+        _characterPortrait.sprite = character.Portrait;
     }
 
 
