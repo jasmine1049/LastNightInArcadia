@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameObject _nextUIPage;
-    [SerializeField] private Image _characterPortrait;
+
+    [SerializeField] private GameObject _characterPortrait;
+    [SerializeField] private GameObject _journalist;
+    [SerializeField] private GameObject _singer;
 
     private Character[] _nightPhaseDeaths;
     private int _numberDeathsReported;
@@ -60,7 +63,27 @@ public class DeathReportScreen : MonoBehaviour, IPointerClickHandler
         // 
         // From there probably jsut a bunch of FormatText type functinos for each TextMeshProUGUI thingy
         Character character = _nightPhaseDeaths[_numberDeathsReported];
-        _characterPortrait.sprite = character.Portrait;
+        
+        // Very ugly temp thing to make the animation work :D!
+        if (character.Name == "Journalist")
+        {
+            _journalist.SetActive(true);
+            _characterPortrait.SetActive(false);
+            _singer.SetActive(false);
+        }
+        else if (character.Name == "Actress")
+        {
+            _singer.SetActive(true);
+            _characterPortrait.SetActive(false);
+            _journalist.SetActive(false);
+        }
+        else
+        {
+            _singer.SetActive(false);
+            _journalist.SetActive(false);
+            _characterPortrait.SetActive(true);
+            _characterPortrait.GetComponent<Image>().sprite = character.Portrait;
+        }
     }
 
 
